@@ -108,7 +108,7 @@
         var bufferSource = context.createBufferSource();//create source to contain audio
         bufferSource.buffer = buffers[i];//set the buffer to the correspong sound we want to play
         bufferSource.connect(gain_nodes[i]);//connect the gain modifier to the sound
-        bufferSource.connect(context.destination);//connect the sound to the sound output
+        gain_nodes[i].connect(context.destination);//connect the sound to the sound output
         bufferSource.start();//start the sound     
     }
     function changegain(i,changedvalue){
