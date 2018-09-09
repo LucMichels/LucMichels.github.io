@@ -90,7 +90,7 @@
     }
     snare.send();
     var hihat = new XMLHttpRequest();
-    hihat.open("Get","hihat.wav",true);  //  <---- replace this file with yours
+    hihat.open("Get","hihatt.wav",true);  //  <---- replace this file with yours
     hihat.responseType = "arraybuffer";
     hihat.onload = function(){
         context.decodeAudioData(hihat.response, function(buffer){buffers[2] = buffer;});
