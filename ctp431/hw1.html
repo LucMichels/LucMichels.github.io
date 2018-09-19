@@ -7,7 +7,18 @@
 </head>
 
 <style>
+/*buttons animation*/
+@keyframes buttonAnimation {
+    0%   {background-color: red;}
+    20%  {background-color: orange;}
+    40%  {background-color: yellow;}
+    60% {background-color: green;}
+    80% {background-color: blue;}
+    100% {background-color: purple;}
+}
+
     button {
+
         padding: 5px;
         background: rgb(200, 200, 200);
         border: 1px solid rgb(122, 122, 122);
@@ -21,6 +32,8 @@
         background: rgb(100, 100, 100);
         border: 1px solid rgb(0,0,0);
         box-shadow: 0 0 2px 0 rgb(0,0,0);
+        animation-name: buttonAnimation;
+        animation-duration: 1s;
     }
     div#kick{
         width:130px;
