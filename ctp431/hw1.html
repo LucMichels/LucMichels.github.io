@@ -89,12 +89,12 @@
     <input class="volume" onchange="changegain(2,this.value)" id="snareVol" title="Snare volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "hihat" align = "center">
-    <button id="hihatPad" onmousedown="playdrum(3)"> Modified Hihat ('l' key)</button>
+    <button id="hihatPad" onmousedown="playdrum(3)"> Modified Hihat ('q' key)</button>
     <p id="hihatVolLabel"></p>
     <input class="volume" onchange="changegain(3,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "hihat" align = "center">
-    <button id="modifiedHihatVolPad" onmousedown="playdrum(4)"> Hihat ('l' key)</button>
+    <button id="modifiedHihatVolPad" onmousedown="playdrum(4)"> Hihat ('w' key)</button>
     <p id="modifiedHihatVolLabel"></p>
     <input class="volume" onchange="changegain(4,this.value)" id="modifiedHihatVol" title="Modified Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
@@ -189,14 +189,14 @@
                 simulateClick(hihatpad);
                 break;
             case 81: //'q'
-                var modifiedHihatpad = document.getElementById("hihatPad"); 
-                hihatpad.className = 'active';
-                simulateClick(hihatpad);
+                var modifiedHihatpad = document.getElementById("modifiedHihatpad"); 
+                modifiedHihatpad.className = 'active';
+                simulateClick(modifiedHihatpad);
                 break;
             case 87: //'w'
-                var modifiedKickPad = document.getElementById("hihatPad"); 
-                hihatpad.className = 'active';
-                simulateClick(hihatpad);
+                var modifiedKickPad = document.getElementById("modifiedKickPad"); 
+                modifiedKickPad.className = 'modifiedKickPad';
+                simulateClick(modifiedKickPad);
                 break;    
         }
     }
@@ -214,6 +214,14 @@
                 var hihatpad = document.getElementById("hihatPad"); 
                 hihatpad.className = '';
                 break;
+            case 81: //'q'
+                var modifiedHihatpad = document.getElementById("modifiedHihatpad"); 
+                modifiedHihatpad.className = '';
+                break;
+            case 87: //'w'
+                var modifiedKickPad = document.getElementById("modifiedKickPad"); 
+                modifiedKickPad.className = '';
+                break;    
         }
     }
     // simulated mousedown on buttons
