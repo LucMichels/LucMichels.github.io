@@ -118,7 +118,7 @@
     }
     kick.send();
     var modifiedKick = new XMLHttpRequest();
-    modifiedKick.open("Get","assets/modifiedKickdrum.wav",true);   //  <---- replace this file with yours
+    modifiedKick.open("Get","assets/modifiedkickdrum.wav",true);   //  <---- replace this file with yours
     modifiedKick.responseType = "arraybuffer";
     modifiedKick.onload = function(){
         context.decodeAudioData(kick.response, function(buffer){buffers[1] = buffer;});
@@ -139,7 +139,7 @@
     }
     hihat.send();
     var modifiedHihat = new XMLHttpRequest();
-    modifiedHihat.open("Get","assets/modifiedHihat.wav",true);  //  <---- replace this file with yours
+    modifiedHihat.open("Get","assets/modifiedhihat.wav",true);  //  <---- replace this file with yours
     modifiedHihat.responseType = "arraybuffer";
     modifiedHihat.onload = function(){
         context.decodeAudioData(hihat.response, function(buffer){buffers[4] = buffer;});
