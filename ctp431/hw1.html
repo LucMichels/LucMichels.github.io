@@ -20,22 +20,30 @@
     button {
 
         padding: 5px;
+        border-radius: 50%;
         background: rgb(200, 200, 200);
         border: 1px solid rgb(122, 122, 122);
         border-radius: 2px;
         outline: none;
         width:120px;
         height:120px;
+        background-color: azure;
         font-size:15px
+
     }
     button.active, button:active {
         background: rgb(100, 100, 100);
         border: 1px solid rgb(0,0,0);
         box-shadow: 0 0 2px 0 rgb(0,0,0);
         animation-name: buttonAnimation;
-        animation-duration: 0.078s;
+        animation-duration: 0.025s;
     }
     div#kick{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #modifiedKick{
         width:130px;
         height:600px;
         float:left;
@@ -50,7 +58,7 @@
         height:600px;
         float:left;
     }
-    #test{
+    #modifiedHihat{
         width:130px;
         height:600px;
         float:left;
@@ -71,24 +79,34 @@
     <p id="kickVolLabel"></p>
     <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max ="0" value = "-12">
 </div>
+<div id = "mkick" align = "center">
+    <button id="modifiedKick" onmousedown="playdrum(1)" > Modified Kick ('s' key)</button>
+    <p id="modifiedKickVolLabel"></p>
+    <input class="volume" onchange="changegain(1,this.value)" id="modifiedKickVol" title="Modified Kick volume" type="range" min="-24" max ="0" value = "-12">
+</div>
 <div id = "snare" align = "center">
-    <button id="snarePad" onmousedown="playdrum(1)" > Snare ('s' key)</button>
+    <button id="snarePad" onmousedown="playdrum(2)" > Snare ('s' key)</button>
     <p id="snareVolLabel"></p>
-    <input class="volume" onchange="changegain(1,this.value)" id="snareVol" title="Snare volume" type="range" min="-24" max ="0" value = "-12">
+    <input class="volume" onchange="changegain(2,this.value)" id="snareVol" title="Snare volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "hihat" align = "center">
-    <button id="hihatPad" onmousedown="playdrum(2)"> Hihat ('l' key)</button>
+    <button id="hihatPad" onmousedown="playdrum(3)"> Modified Hihat ('l' key)</button>
     <p id="hihatVolLabel"></p>
-    <input class="volume" onchange="changegain(2,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
+    <input class="volume" onchange="changegain(3,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "hihat" align = "center">
+    <button id="hihatPad" onmousedown="playdrum(4)"> Hihat ('l' key)</button>
+    <p id="modifiedHihatVolLabel"></p>
+    <input class="volume" onchange="changegain(4,this.value)" id="modifiedHihatVol" title="Modified Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 
 <script>
     var context = new (window.AudioContext || window.webkitAudioContext)();
-    var buffers = new Array(3); // 0 : kick, 1 : snare, 2 : hihat
-    var volume_id = new Array("kickVol","snareVol","hihatVol");
-    var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel");
-    var gain_nodes = new Array(3);
-    for (i  = 0; i < 3; i++) {
+    var buffers = new Array(5); // 0 : kick, 1 : snare, 2 : hihat
+    var volume_id = new Array("kickVol","modifiedKickVol","snareVol","hihatVol","modifiedHihatVol");
+    var volume_label_id = new Array("kickVolLabel","modifiedKickVolLabel","snareVolLabel","hihatVolLabel","modifiedHihatVolLabel");
+    var gain_nodes = new Array(5);
+    for (i  = 0; i < 5; i++) {
         gain_nodes[i] = context.createGain();
         var vol = document.getElementById(volume_id[i]).value;
         gain_nodes[i].gain.value = db2gain(vol);
@@ -101,20 +119,34 @@
         context.decodeAudioData(kick.response, function(buffer){buffers[0] = buffer;});
     }
     kick.send();
+    var modifiedKick = new XMLHttpRequest();
+    modifiedKick.open("Get","assets/modifiedKickdrum.wav",true);   //  <---- replace this file with yours
+    modifiedKick.responseType = "arraybuffer";
+    modifiedKick.onload = function(){
+        context.decodeAudioData(kick.response, function(buffer){buffers[1] = buffer;});
+    }
+    modifiedKick.send();
     var snare = new XMLHttpRequest();
     snare.open("Get","assets/snare.wav",true);  //  <---- replace this file with yours
     snare.responseType = "arraybuffer";
     snare.onload = function(){
-        context.decodeAudioData(snare.response, function(buffer){buffers[1] = buffer;});
+        context.decodeAudioData(snare.response, function(buffer){buffers[2] = buffer;});
     }
     snare.send();
     var hihat = new XMLHttpRequest();
     hihat.open("Get","assets/hihat.wav",true);  //  <---- replace this file with yours
     hihat.responseType = "arraybuffer";
     hihat.onload = function(){
-        context.decodeAudioData(hihat.response, function(buffer){buffers[2] = buffer;});
+        context.decodeAudioData(hihat.response, function(buffer){buffers[3] = buffer;});
     }
     hihat.send();
+    var modifiedHihat = new XMLHttpRequest();
+    modifiedHihat.open("Get","assets/modifiedHihat.wav",true);  //  <---- replace this file with yours
+    modifiedHihat.responseType = "arraybuffer";
+    modifiedHihat.onload = function(){
+        context.decodeAudioData(hihat.response, function(buffer){buffers[4] = buffer;});
+    }
+    modifiedHihat.send();
     window.onload=function(){
         window.addEventListener('keydown', function (key) {
             keyboardDown(key);
