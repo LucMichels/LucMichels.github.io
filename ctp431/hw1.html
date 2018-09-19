@@ -21,7 +21,6 @@
 
         padding: 5px;
         border-radius: 50%;
-        background: rgb(200, 200, 200);
         border: 1px solid rgb(122, 122, 122);
         border-radius: 2px;
         outline: none;
@@ -36,7 +35,7 @@
         border: 1px solid rgb(0,0,0);
         box-shadow: 0 0 2px 0 rgb(0,0,0);
         animation-name: buttonAnimation;
-        animation-duration: 0.025s;
+        animation-duration: 0.25s;
     }
     div#kick{
         width:130px;
@@ -80,7 +79,7 @@
     <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "mkick" align = "center">
-    <button id="modifiedKick" onmousedown="playdrum(1)" > Modified Kick ('s' key)</button>
+    <button id="modifiedKickPad" onmousedown="playdrum(1)" > Modified Kick ('s' key)</button>
     <p id="modifiedKickVolLabel"></p>
     <input class="volume" onchange="changegain(1,this.value)" id="modifiedKickVol" title="Modified Kick volume" type="range" min="-24" max ="0" value = "-12">
 </div>
@@ -95,7 +94,7 @@
     <input class="volume" onchange="changegain(3,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
 <div id = "hihat" align = "center">
-    <button id="hihatPad" onmousedown="playdrum(4)"> Hihat ('l' key)</button>
+    <button id="modifiedHihatVolPad" onmousedown="playdrum(4)"> Hihat ('l' key)</button>
     <p id="modifiedHihatVolLabel"></p>
     <input class="volume" onchange="changegain(4,this.value)" id="modifiedHihatVol" title="Modified Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
@@ -189,6 +188,16 @@
                 hihatpad.className = 'active';
                 simulateClick(hihatpad);
                 break;
+            case 81: //'q'
+                var modifiedHihatpad = document.getElementById("hihatPad"); 
+                hihatpad.className = 'active';
+                simulateClick(hihatpad);
+                break;
+            case 87: //'w'
+                var modifiedKickPad = document.getElementById("hihatPad"); 
+                hihatpad.className = 'active';
+                simulateClick(hihatpad);
+                break;    
         }
     }
     function keyboardUp(key) {
