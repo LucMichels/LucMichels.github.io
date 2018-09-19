@@ -41,22 +41,22 @@
         height:600px;
         float:left;
     }
-    #modifiedKick{
+    div#modifiedKick{
         width:130px;
         height:600px;
         float:left;
     }
-    #snare{
+    div#snare{
         width:130px;
         height:600px;
         float:left;
     }
-    #hihat{
+    div#hihat{
         width:130px;
         height:600px;
         float:left;
     }
-    #modifiedHihat{
+    div#modifiedHihat{
         width:130px;
         height:600px;
         float:left;
@@ -77,7 +77,7 @@
     <p id="kickVolLabel"></p>
     <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max ="0" value = "-12">
 </div>
-<div id = "mkick" align = "center">
+<div id = "modifiedKick" align = "center">
     <button id="modifiedKickPad" onmousedown="playdrum(1)" > Modified Kick ('w' key)</button>
     <p id="modifiedKickVolLabel"></p>
     <input class="volume" onchange="changegain(1,this.value)" id="modifiedKickVol" title="Modified Kick volume" type="range" min="-24" max ="0" value = "-12">
@@ -92,8 +92,8 @@
     <p id="hihatVolLabel"></p>
     <input class="volume" onchange="changegain(3,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
-<div id = "hihat" align = "center">
-    <button id="modifiedHihatVolPad" onmousedown="playdrum(4)"> Hihat ('q' key)</button>
+<div id = "modifiedHihat" align = "center">
+    <button id="modifiedHihatPad" onmousedown="playdrum(4)"> Hihat ('q' key)</button>
     <p id="modifiedHihatVolLabel"></p>
     <input class="volume" onchange="changegain(4,this.value)" id="modifiedHihatVol" title="Modified Hihat volume" type="range" min="-24" max ="0" value = "-12">
 </div>
