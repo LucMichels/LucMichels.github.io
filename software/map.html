@@ -25,16 +25,17 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-var resizeTime = 100;     // total duration of the resize effect, 0 is instant
-var resizeDelay = 100;    // time to wait before checking the window size again
-                          // the shorter the time, the more reactive it will be.
-                          // short or 0 times could cause problems with old browsers.
+var img = $('img')
                           
 $('img').mapster({
     mapKey: 'state'
+    onClick: click()
 });
 
-
+function click(){
+	img..set('set',"1",false)set('set',true,"1",{ fillColor: 'ff0000' })
+	
+}
 
 
 
