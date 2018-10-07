@@ -2,6 +2,10 @@
 <html>
 
 <head>
+	 <script src="jquery.imagemapster.min.js"></script>
+     <script src="jquery-3.3.1.min.js"></script>
+     <script src="map.js"></script>
+
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title> Analytica</title>
 </head>
@@ -23,29 +27,6 @@
     <area target="_self" alt="" state="7" href="#" coords="475,534,494,586,529,548" shape="poly">
 </map>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="jquery-3.3.1.min.js"></script>
-<script src="jquery.imagemapster.zepto.js"></script>
-<script>
-var img = $('img')
-                          
-img.mapster({
-    mapKey: 'state',
-    fill: true,
-    fillColor: '00FF00',
-    border: true,
-    stroke: true,
-    staticState: true
-})
-
-//.bind('mouseover',function() {
-//	img.set('set',"1",false).set('set',true,"1",{ fillColor: 'ff0000' })
-//});
-
-
-
-
-</script>
 </body>
 
 </html>
