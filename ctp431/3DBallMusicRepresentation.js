@@ -7,39 +7,53 @@ var minBoxDepth
 var maxBoxDepth
 var ambiantLight = 60
 var padding
-
+var rotationRate = 0//0.0075
+var freqBrightnessAmpArray = []
+var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
+var freqSmoothing = 0.9
+var fft
+//20 is lowest, 20K is highest hearable by human
 function preload(){
+	
   //sound = loadSound('assets/Damscray_DancingTiger.mp3');
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight,WEBGL);
-	padding = QUARTER_PI/6
+	initArray()
+  createCanvas(windowWidth, windowHeight,WEBGL)
+	padding = QUARTER_PI/5
 	minAngle = -HALF_PI+padding
 	maxAngle = HALF_PI-padding
 	sphereRadius = windowHeight/7
 	minBoxDepth = sphereRadius*2
 	maxBoxDepth = 2*minBoxDepth
 
-	mic = new p5.AudioIn();
+	mic = new p5.AudioIn()
 	mic.start()
-	fft = new p5.FFT();
-	fft.setInput(mic);
+	fft = new p5.FFT()
+	fft.setInput(mic)
 }
 
 function draw() {
+
+	var spectrum = fft.analyze()
+	var brightness = fft.getCentroid()
+	updateArray(map(brightness,0,20000,0,9,true))
+
 	background(0)
 	specularMaterial(255)
 	fill(0)
   	box(windowWidth,windowHeight,1,windowWidth/2,windowWidth/2,-windowWidth)
-	pointLight(250, 250, 250, 100, 100, 0);
-	ambientLight(ambiantLight);
+	pointLight(250, 250, 250, 100, 100, 0)
+	ambientLight(ambiantLight)
 	c = color('#080808')
 	fill(c)
 	specularMaterial(250)
 	push()
+	rotation += rotationRate
 	if(mouseIsPressed){
-		rotation = (mouseX - height / 2)/smoothing
+		//rotation = (mouseX - height / 2)/smoothing
+		rotation += (mouseX - pmouseX)/smoothing
 	}
 	rotateY(rotation)
 	
@@ -53,14 +67,61 @@ function	drawSound() {
 	
 	rotateY(padding)
 	
-	for(angleX = minAngle;angleX <= maxAngle; angleX = angleX + 2*padding){
+	for(angleX = minAngle, i = 0;angleX <= maxAngle; angleX = angleX + 2*padding, ++i){
 		push()
 		rotateX(angleX)
-		for(angleY = minAngle;angleY <= maxAngle; angleY = angleY + 2*padding){
-			rotateY(2*padding)
-			box(20,20,minBoxDepth)
+		for(angleY = minAngle, k = 0;angleY <= maxAngle; angleY = angleY + 2*padding, ++k){
+
+			if(k == 4){
+				rotateY(2*padding)
+				
+			} else {
+				rotateY(2*padding)
+				var boxSize = map(freqBrightnessAmpArray[i][k],0,255,minBoxDepth,maxBoxDepth,true)
+				box(20,20,boxSize)
+			}
+			
 		}
 		pop()
 	}
 	pop()
+}
+
+function updateArray(brightnessPos){
+	var maxK = freqBrightnessAmpArray[0].length
+	var maxI = freqBrightnessAmpArray.length
+	for(i = 0; i < maxI;++i){
+
+		if(i == brightnessPos){
+
+			var freqLowerBound = freqsRanges[i]
+			var freqHighBound = freqsRanges[i+1]
+			
+			for(k = 0; k < maxK;++k){
+				var newAmp = fft.getEnergy(freqLowerBound,freqHighBound)
+				var oldAmp = freqBrightnessAmpArray[i][k]
+				if(newAmp < oldAmp){
+					freqBrightnessAmpArray[i][k] = newAmp
+				} else {
+					freqBrightnessAmpArray[i][k] = oldAmp * freqSmoothing + (1-freqSmoothing)*newAmp 
+				}
+			}
+		} else {
+			for(k = 0; k < maxK;++k){
+				freqBrightnessAmpArray[i][k] *= freqSmoothing 
+			}
+		}
+		
+	}
+}
+
+function initArray(){
+	for(angleX = minAngle;angleX <= maxAngle; angleX = angleX + 2*padding){
+		var l = []
+		for(angleY = minAngle;angleY <= maxAngle; angleY = angleY + 2*padding){
+			l.push(0)
+		}
+		freqBrightnessAmpArray.push(line)
+	}
+
 }
