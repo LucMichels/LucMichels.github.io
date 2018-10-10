@@ -10,7 +10,7 @@ var padding
 var rotationRate = 0//0.0075
 var freqBrightnessAmpArray = []
 var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
-var freqSmoothing = 0.9
+var freqSmoothing = 0.7
 var fft
 //20 is lowest, 20K is highest hearable by human
 function preload(){
@@ -19,31 +19,35 @@ function preload(){
 }
 
 function setup() {
-	initArray()
-  createCanvas(windowWidth, windowHeight,WEBGL)
+	createCanvas(windowWidth, windowHeight,WEBGL)
 	padding = QUARTER_PI/5
 	minAngle = -HALF_PI+padding
 	maxAngle = HALF_PI-padding
 	sphereRadius = windowHeight/7
 	minBoxDepth = sphereRadius*2
-	maxBoxDepth = 2*minBoxDepth
+	
 
 	mic = new p5.AudioIn()
 	mic.start()
 	fft = new p5.FFT()
 	fft.setInput(mic)
+	initArray()
 }
 
 function draw() {
 
 	var spectrum = fft.analyze()
 	var brightness = fft.getCentroid()
-	updateArray(map(brightness,0,20000,0,9,true))
+	print(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true)))
+	updateArray(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true)))
 
 	background(0)
 	specularMaterial(255)
 	fill(0)
-  	box(windowWidth,windowHeight,1,windowWidth/2,windowWidth/2,-windowWidth)
+	push()
+	translate(windowWidth/2,windowHeight/2,-3*sphereRadius)
+  	box(windowWidth,windowHeight,1)
+  	pop()
 	pointLight(250, 250, 250, 100, 100, 0)
 	ambientLight(ambiantLight)
 	c = color('#080808')
@@ -64,10 +68,10 @@ function draw() {
 
 function	drawSound() {
 	push()
-	
 	rotateY(padding)
 	
 	for(angleX = minAngle, i = 0;angleX <= maxAngle; angleX = angleX + 2*padding, ++i){
+		
 		push()
 		rotateX(angleX)
 		for(angleY = minAngle, k = 0;angleY <= maxAngle; angleY = angleY + 2*padding, ++k){
@@ -77,7 +81,8 @@ function	drawSound() {
 				
 			} else {
 				rotateY(2*padding)
-				var boxSize = map(freqBrightnessAmpArray[i][k],0,255,minBoxDepth,maxBoxDepth,true)
+				var boxSize = map(freqBrightnessAmpArray[i][k],0,255,1,4)*minBoxDepth
+
 				box(20,20,boxSize)
 			}
 			
@@ -94,10 +99,11 @@ function updateArray(brightnessPos){
 
 		if(i == brightnessPos){
 
-			var freqLowerBound = freqsRanges[i]
-			var freqHighBound = freqsRanges[i+1]
+			
 			
 			for(k = 0; k < maxK;++k){
+				var freqLowerBound = freqsRanges[k]
+				var freqHighBound = freqsRanges[k+1]
 				var newAmp = fft.getEnergy(freqLowerBound,freqHighBound)
 				var oldAmp = freqBrightnessAmpArray[i][k]
 				if(newAmp < oldAmp){
@@ -117,11 +123,12 @@ function updateArray(brightnessPos){
 
 function initArray(){
 	for(angleX = minAngle;angleX <= maxAngle; angleX = angleX + 2*padding){
+
 		var l = []
 		for(angleY = minAngle;angleY <= maxAngle; angleY = angleY + 2*padding){
 			l.push(0)
 		}
-		freqBrightnessAmpArray.push(line)
+		freqBrightnessAmpArray.push(l)
 	}
 
 }
