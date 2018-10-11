@@ -7,7 +7,7 @@ var minBoxDepth
 var maxBoxDepth
 var ambiantLight = 60
 var padding
-var rotationRate = 0//0.0075
+var rotationRate = 0.0075
 var freqBrightnessAmpArray = []
 var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
 var freqSmoothing = 0.7
@@ -16,7 +16,8 @@ var sound
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
-		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
 	  
 	}
 
