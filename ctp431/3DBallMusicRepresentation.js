@@ -18,15 +18,15 @@ var boxSide
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
-		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
-		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
 	  
 	}
 
 function setup() {
 	
 	createCanvas(windowWidth, windowHeight,WEBGL)
-	padding = QUARTER_PI/5
+	padding = QUARTER_PI/10
 	minAngle = -HALF_PI+padding
 	maxAngle = HALF_PI-padding
 	sphereRadius = windowHeight/7
