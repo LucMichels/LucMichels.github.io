@@ -167,7 +167,7 @@ function addLights(){
 }
 
 function doubleClicked() {
-	print(jStat.stddev(barray))
+	print(jStat.stdev(barray))
 	
 	print(jStat.mean( barray ))
 	print(jStat.meandev( barray ))
