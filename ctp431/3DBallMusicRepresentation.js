@@ -9,7 +9,7 @@ var ambiantLight = 60
 var padding
 var rotationRate = 0.0075
 var freqBrightnessAmpArray = []
-var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
+var freqsRanges = [20, 40 ,63, 100, 125, 179,250,375, 500, 750,1000, 1500,2000, 3000,4000,6500 ,9000,15000, 20000]//[20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
 var freqSmoothing = 0.7
 var fft
 var sound
