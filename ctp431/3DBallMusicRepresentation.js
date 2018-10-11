@@ -15,11 +15,13 @@ var fft
 var sound
 var perimeter
 var boxSide
+var lightBoxSide
+var lightDensity
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
-		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
-		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
 	  
 	}
 
@@ -32,6 +34,7 @@ function setup() {
 	sphereRadius = windowHeight/7
 	minBoxDepth = sphereRadius*2
 	perimeter = TWO_PI*sphereRadius
+	lightBoxSide = sphereRadius*0.5
 
 	initArray()
 	boxSide = (1/freqBrightnessAmpArray.length)*0.33 *perimeter
@@ -108,10 +111,13 @@ function updateArray(brightnessPos){
 		if(i == brightnessPos){
 
 			
-			
+			print(maxK)
 			for(k = 0; k < maxK;++k){
+
 				var freqLowerBound = freqsRanges[k]
 				var freqHighBound = freqsRanges[k+1]
+				print(freqLowerBound)
+				print(freqHighBound)
 				var newAmp = fft.getEnergy(freqLowerBound,freqHighBound)
 				var oldAmp = freqBrightnessAmpArray[i][k]
 				if(newAmp < oldAmp){
