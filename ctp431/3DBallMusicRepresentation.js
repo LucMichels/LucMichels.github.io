@@ -18,6 +18,7 @@ var boxSide
 var minLightDist = 10
 var lightDist = 90
 var lightDensity = 100
+var barray = []
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
@@ -50,8 +51,18 @@ function draw() {
 
 	var spectrum = fft.analyze()
 	var brightness = fft.getCentroid()
-	print(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true)))
+
+	if(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true))>0){
+		barray.push(brightness)
+	}
+
+
+	
 	updateArray(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true)))
+
+	
+
+
 
 	background(0)
 	specularMaterial(255)
@@ -77,6 +88,7 @@ function draw() {
 	
 	pop()
 }
+
 
 function	drawSound() {
 	push()
@@ -155,4 +167,17 @@ function addLights(){
 		directionalLight(randomColor, randomDirection.mult(-1))
 
 	}
+}
+
+function doubleClicked() {
+	print(stdev(barray))
+	
+	print(mean( barray ))
+	print(meandev( barray ))
+	print(median( barray ))
+	
+	print(meddev( barray ))
+
+	print(quartiles(barray))
+	
 }
