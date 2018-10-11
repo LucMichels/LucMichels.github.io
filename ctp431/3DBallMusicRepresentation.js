@@ -20,6 +20,10 @@ var minLightDist = 10
 var lightDist = 90
 var lightDensity = 100
 var barray = []
+var mean = 3226.5308284196417
+var meanDev = 1351.2642225570344
+var lowMap = mean - 2 * meanDev
+var highMap = mean + 2 * meanDev
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
@@ -53,13 +57,13 @@ function draw() {
 	var spectrum = fft.analyze()
 	var brightness = fft.getCentroid()
 
-	if(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true))>0){
+	if(round(map(brightness,lowMap,highMap,0,freqBrightnessAmpArray.length,true))>0){
 		barray.push(brightness)
 	}
 
 
 	
-	updateArray(ceil(map(brightness,0,20000,0,freqBrightnessAmpArray.length,true)))
+	updateArray(round(map(brightness,lowMap,highMap,0,freqBrightnessAmpArray.length,true)))
 
 	
 
