@@ -30,7 +30,6 @@ function setup() {
 	minBoxDepth = sphereRadius*2
 	
 
-	mic = new p5.AudioIn()
 	sound.play()
 	fft = new p5.FFT()
 	fft.setInput(sound)
