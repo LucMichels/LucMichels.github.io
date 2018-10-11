@@ -167,14 +167,14 @@ function addLights(){
 }
 
 function doubleClicked() {
-	print(stdev(barray))
+	print(jStat.stddev(barray))
 	
-	print(mean( barray ))
-	print(meandev( barray ))
-	print(median( barray ))
+	print(jStat.mean( barray ))
+	print(jStat.meandev( barray ))
+	print(jStat.median( barray ))
 	
-	print(meddev( barray ))
+	print(jStat.meddev( barray ))
 
-	print(quartiles(barray))
+	print(jStat.quartiles(barray))
 	
 }
