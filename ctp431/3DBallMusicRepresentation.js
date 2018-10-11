@@ -14,13 +14,13 @@ var freqSmoothing = 0.7
 var fft
 var sound
 //20 is lowest, 20K is highest hearable by human
-/*	function preload(){
-		
+function preload(){
+		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
 	  
-	}*/
+	}
 
 function setup() {
-	sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+	
 	createCanvas(windowWidth, windowHeight,WEBGL)
 	padding = QUARTER_PI/5
 	minAngle = -HALF_PI+padding
@@ -30,7 +30,7 @@ function setup() {
 	
 
 	mic = new p5.AudioIn()
-	sound.start()
+	sound.play()
 	fft = new p5.FFT()
 	fft.setInput(sound)
 	initArray()
