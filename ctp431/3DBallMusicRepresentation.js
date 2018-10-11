@@ -17,7 +17,7 @@ var perimeter
 var boxSide
 var minLightDist = 10
 var lightDist = 90
-var lightDensity = 1000
+var lightDensity = 100
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
@@ -93,17 +93,6 @@ function	drawSound() {
 
 			box(boxSide,boxSide,boxSize)
 			
-			*/
-			if(k == 4){
-				rotateY(2*padding)
-				
-			} else {
-				rotateY(2*padding)
-				var boxSize = map(freqBrightnessAmpArray[i][k],0,255,1,4)*minBoxDepth
-
-				box(boxSide,boxSide,boxSize)
-			}
-			/*
 		}
 		pop()
 	}
@@ -158,7 +147,7 @@ function initArray(){
 
 function addLights(){
 	for(i = 0; i < lightDensity ; ++i){
-		var randomDirection = createVector(Math.random(), Math.random(), Math.random()).normalize();
+		var randomDirection = p5.Vector.random3D().normalize()
 		//var randomDist = minLightDist + Math.random()*lightDist //for point light?
 		//var position = randomDirection*mult(randomDist+sphereRadius) //for point light?
 		var randomColor = color(Math.random(), Math.random(), Math.random())
