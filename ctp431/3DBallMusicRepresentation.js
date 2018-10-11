@@ -34,7 +34,7 @@ function setup() {
 	perimeter = TWO_PI*sphereRadius
 
 	initArray()
-	boxSide = (1/freqBrightnessAmpArray.length)*0.75 *perimeter
+	boxSide = (1/freqBrightnessAmpArray.length)*0.33 *perimeter
 
 	sound.play()
 	fft = new p5.FFT()
