@@ -152,7 +152,7 @@ function addLights(){
 		//var position = randomDirection*mult(randomDist+sphereRadius) //for point light?
 		var randomColor = color(Math.random(), Math.random(), Math.random())
 
-		directionalLight(randomColor, randomDirection.mult(-1)
+		directionalLight(randomColor, randomDirection.mult(-1))
 
 	}
 }
