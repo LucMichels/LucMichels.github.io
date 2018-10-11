@@ -13,6 +13,8 @@ var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
 var freqSmoothing = 0.7
 var fft
 var sound
+var perimeter
+var boxSide
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
@@ -29,12 +31,15 @@ function setup() {
 	maxAngle = HALF_PI-padding
 	sphereRadius = windowHeight/7
 	minBoxDepth = sphereRadius*2
-	
+	perimeter = TWO_PI*sphereRadius
+
+	initArray()
+	boxSide = (1/freqBrightnessAmpArray.length)*0.75 *perimeter
 
 	sound.play()
 	fft = new p5.FFT()
 	fft.setInput(sound)
-	initArray()
+	
 }
 
 function draw() {
@@ -86,7 +91,7 @@ function	drawSound() {
 				rotateY(2*padding)
 				var boxSize = map(freqBrightnessAmpArray[i][k],0,255,1,4)*minBoxDepth
 
-				box(20,20,boxSize)
+				box(boxSide,boxSide,boxSize)
 			}
 			
 		}
