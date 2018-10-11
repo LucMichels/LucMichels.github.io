@@ -15,7 +15,7 @@ var fft
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 	
-  //sound = loadSound('assets/Damscray_DancingTiger.mp3');
+  sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
 }
 
 function setup() {
@@ -28,9 +28,9 @@ function setup() {
 	
 
 	mic = new p5.AudioIn()
-	mic.start()
+	sound.start()
 	fft = new p5.FFT()
-	fft.setInput(mic)
+	fft.setInput(sound)
 	initArray()
 }
 
