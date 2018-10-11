@@ -10,7 +10,8 @@ var padding
 var rotationRate = 0.0075
 var freqBrightnessAmpArray = []
 var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]//[20, 40 ,63, 100, 125, 179,200,250,375, 500, 750,1000,1250, 1500,2000,2500, 3000,4000,6500 ,9000,15000, 20000]
-var freqSmoothing = 0.7
+var freqSmoothing = 0.5
+var residualSmoothing = 0.95
 var fft
 var sound
 var perimeter
@@ -134,7 +135,7 @@ function updateArray(brightnessPos){
 			}
 		} else {
 			for(k = 0; k < maxK;++k){
-				freqBrightnessAmpArray[i][k] *= freqSmoothing 
+				freqBrightnessAmpArray[i][k] *= residualSmoothing 
 			}
 		}
 		
