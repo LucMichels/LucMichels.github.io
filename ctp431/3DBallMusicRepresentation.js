@@ -9,26 +9,27 @@ var ambiantLight = 60
 var padding
 var rotationRate = 0.0075
 var freqBrightnessAmpArray = []
-var freqsRanges = [20, 40 ,63, 100, 125, 179,200,250,375, 500, 750,1000,1250, 1500,2000,2500, 3000,4000,6500 ,9000,15000, 20000]//[20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
+var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]//[20, 40 ,63, 100, 125, 179,200,250,375, 500, 750,1000,1250, 1500,2000,2500, 3000,4000,6500 ,9000,15000, 20000]
 var freqSmoothing = 0.7
 var fft
 var sound
 var perimeter
 var boxSide
-var lightDist = 100
+var minLightDist = 10
+var lightDist = 90
 var lightDensity = 1000
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
-		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
-		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
 	  
 	}
 
 function setup() {
 	
 	createCanvas(windowWidth, windowHeight,WEBGL)
-	padding = QUARTER_PI/10
+	padding = QUARTER_PI/5
 	minAngle = -HALF_PI+padding
 	maxAngle = HALF_PI-padding
 	sphereRadius = windowHeight/7
@@ -87,6 +88,12 @@ function	drawSound() {
 		rotateX(angleX)
 		for(angleY = minAngle, k = 0;angleY <= maxAngle; angleY = angleY + 2*padding, ++k){
 
+			rotateY(2*padding)
+			var boxSize = map(freqBrightnessAmpArray[i][k],0,255,1,4)*minBoxDepth
+
+			box(boxSide,boxSide,boxSize)
+			
+			*/
 			if(k == 4){
 				rotateY(2*padding)
 				
@@ -96,7 +103,7 @@ function	drawSound() {
 
 				box(boxSide,boxSide,boxSize)
 			}
-			
+			/*
 		}
 		pop()
 	}
@@ -151,6 +158,12 @@ function initArray(){
 
 function addLights(){
 	for(i = 0; i < lightDensity ; ++i){
+		var randomDirection = createVector(Math.random(), Math.random(), Math.random()).normalize();
+		//var randomDist = minLightDist + Math.random()*lightDist //for point light?
+		//var position = randomDirection*mult(randomDist+sphereRadius) //for point light?
+		var randomColor = color(Math.random(), Math.random(), Math.random())
+
+		directionalLight(randomColor, randomDirection.mult(-1)
 
 	}
 }
