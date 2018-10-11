@@ -9,19 +9,19 @@ var ambiantLight = 60
 var padding
 var rotationRate = 0.0075
 var freqBrightnessAmpArray = []
-var freqsRanges = [20, 40 ,63, 100, 125, 179,250,375, 500, 750,1000, 1500,2000, 3000,4000,6500 ,9000,15000, 20000]//[20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
+var freqsRanges = [20, 40 ,63, 100, 125, 179,200,250,375, 500, 750,1000,1250, 1500,2000,2500, 3000,4000,6500 ,9000,15000, 20000]//[20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]
 var freqSmoothing = 0.7
 var fft
 var sound
 var perimeter
 var boxSide
-var lightBoxSide
-var lightDensity
+var lightDist = 100
+var lightDensity = 1000
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
-		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
-		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
 	  
 	}
 
@@ -105,13 +105,15 @@ function	drawSound() {
 
 function updateArray(brightnessPos){
 	var maxK = freqBrightnessAmpArray[0].length
+	print(freqBrightnessAmpArray[0].length)
+	print("hey")
 	var maxI = freqBrightnessAmpArray.length
 	for(i = 0; i < maxI;++i){
 
 		if(i == brightnessPos){
 
 			
-			print(maxK)
+			
 			for(k = 0; k < maxK;++k){
 
 				var freqLowerBound = freqsRanges[k]
@@ -145,4 +147,10 @@ function initArray(){
 		freqBrightnessAmpArray.push(l)
 	}
 
+}
+
+function addLights(){
+	for(i = 0; i < lightDensity ; ++i){
+
+	}
 }
