@@ -21,8 +21,8 @@ var lightDensity = 1000
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
-		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
-		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
+		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
 	  
 	}
 
@@ -129,7 +129,7 @@ function updateArray(brightnessPos){
 				print(freqHighBound)
 				var newAmp = fft.getEnergy(freqLowerBound,freqHighBound)
 				var oldAmp = freqBrightnessAmpArray[i][k]
-				if(newAmp < oldAmp){
+				if(newAmp > oldAmp){
 					freqBrightnessAmpArray[i][k] = newAmp
 				} else {
 					freqBrightnessAmpArray[i][k] = oldAmp * freqSmoothing + (1-freqSmoothing)*newAmp 
