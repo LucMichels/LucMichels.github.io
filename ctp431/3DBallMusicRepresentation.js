@@ -103,6 +103,8 @@ function draw() {
 	
 	drawSound()
 	
+	drawBeat()
+
 	pop()
 
 	addLights()
@@ -173,6 +175,7 @@ function initArray(){
 }
 
 function addLights(){
+
 	time = millis()
 	beatTime += time - ptime
 	ptime = time
@@ -230,4 +233,8 @@ function doubleClicked() {
 
 	print(jStat.quartiles(barray))
 	
+}
+
+function drawBeat(){
+	sphere(map(beatTime,0,beat,1,sphereRadius*1.1))
 }
