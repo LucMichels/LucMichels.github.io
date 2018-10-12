@@ -20,10 +20,12 @@ var minLightDist = 10
 var lightDist = 90
 var lightDensity = 10
 var barray = []
-var mean = 3226.5308284196417
-var meanDev = 1351.2642225570344
-var lowMap = mean - 2 * meanDev
-var highMap = mean + 2 * meanDev
+var mean = 4490.880711559803
+var meanDev = 2954.1245194845305
+var lowMap = max(mean - 2 * meanDev,0)
+var highMap = min(mean + 2 * meanDev, 20000)
+var lastAmp
+var amplitude
 var beatTime = 0
 var beat = 576.923076923
 var time
@@ -54,8 +56,11 @@ function setup() {
 	boxSide = (1/freqBrightnessAmpArray.length)*0.33 *perimeter
 
 	sound.play()
+	amplitude = new p5.Amplitude();
+
 	fft = new p5.FFT()
 	fft.setInput(sound)
+	amplitude.setInput(sound)
 	
 }
 
@@ -171,10 +176,13 @@ function addLights(){
 	time = millis()
 	beatTime += time - ptime
 	ptime = time
-	if(beatTime > beat){
+	var newAmp = amplitude.getLevel()
+	if(newAmp > lastAmp){
 		beatTime = 0
+
 		updateLights()
 	}
+	lastAmp = newAmp
 	var len = lightArray.length
 	for(i =0; i<len;++i){
 		directionalLight(lightArray[i][0], lightArray[i][1])
