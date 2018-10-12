@@ -25,7 +25,7 @@ var meanDev = 1351.2642225570344
 var lowMap = mean - 2 * meanDev
 var highMap = mean + 2 * meanDev
 var beatTime = 0
-var beat = 1000
+var beat = 576.923076923
 var time
 var ptime = 0
 
