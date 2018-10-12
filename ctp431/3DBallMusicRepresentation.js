@@ -18,7 +18,7 @@ var perimeter
 var boxSide
 var minLightDist = 10
 var lightDist = 90
-var lightDensity = 100
+var lightDensity = 10
 var barray = []
 var mean = 3226.5308284196417
 var meanDev = 1351.2642225570344
