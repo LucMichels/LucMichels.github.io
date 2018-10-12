@@ -21,9 +21,9 @@ var lightDist = 90
 var lightDensity = 10
 var barray = []
 var mean = 4490.880711559803
-var meanDev = 2954.1245194845305
-var lowMap = max(mean - 2 * meanDev,0)
-var highMap = min(mean + 2 * meanDev, 20000)
+var meanDev = 2954.1245194845305//2823.9915339942213
+var lowMap = Math.max(mean - 2 * meanDev,0)
+var highMap = Math.min(mean + 2 * meanDev, 20000)
 var lastAmp
 var amplitude
 var beatTime = 0
