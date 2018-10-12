@@ -24,6 +24,12 @@ var mean = 3226.5308284196417
 var meanDev = 1351.2642225570344
 var lowMap = mean - 2 * meanDev
 var highMap = mean + 2 * meanDev
+var beatTime = 0
+var beat = 1000
+var time
+var ptime
+
+var lightArray = []
 //20 is lowest, 20K is highest hearable by human
 function preload(){
 		soundFormats('mp3');
@@ -161,6 +167,22 @@ function initArray(){
 }
 
 function addLights(){
+	time = millis()
+	beatTime += time - ptime
+	ptime = time
+	if(beatTime > beat){
+		beatTime = 0
+		updateLights()
+	}
+	var len = lightArray.length
+	for(i =0; i<len;++i){
+		directionalLight(lightArray[i][0], lightArray[i][1])
+	}
+	
+}
+
+function updateLights(){
+
 	for(i = 0; i < lightDensity ; ++i){
 		
 		//var randomDist = minLightDist + Math.random()*lightDist //for point light
@@ -174,16 +196,16 @@ function addLights(){
 
 		var randomDirection = p5.Vector.random3D().normalize()
 		var randomColor
-		if(Math.random()>0.33){
+		if(Math.random()<0.33){
 			randomColor = color(255, 0, 0)
-		} else if (Math.random()>0.33){
+		} else if (Math.random()<0.66){
 			randomColor = color(0, 255, 0)
 		} else {
 			randomColor = color(0, 0, 255)
 		}
 		 
-
-		directionalLight(randomColor, randomDirection.mult(-1))
+		lightArray.push([randomColor,randomDirection])
+		
 
 	}
 }
