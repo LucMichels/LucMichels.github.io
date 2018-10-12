@@ -165,11 +165,12 @@ function addLights(){
 		
 		var randomDist = minLightDist + Math.random()*lightDist //for point light
 		var randomDirection = p5.Vector.random3D().normalize()
+		print(randomDist+sphereRadius)
 		var position = randomDirection*mult(randomDist+sphereRadius) //for point light
 		
 		var randomColor = color(round(Math.random()*255), round(Math.random()*255), round(Math.random()*255))
 
-		pointLight(randomColor, randomDirection)
+		pointLight(randomColor, position)
 
 		//var randomDirection = p5.Vector.random3D().normalize()
 		//var randomColor = color(round(Math.random()*255), round(Math.random()*255), round(Math.random()*255))
