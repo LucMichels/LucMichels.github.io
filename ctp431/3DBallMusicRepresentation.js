@@ -27,7 +27,7 @@ var highMap = Math.min(mean + 2 * meanDev, 20000)
 var lastAmp
 var amplitude
 var beatTime = 0
-var beat = 576.923076923
+var beat = 468.75
 var time
 var ptime = 0
 
@@ -177,7 +177,7 @@ function addLights(){
 	beatTime += time - ptime
 	ptime = time
 	var newAmp = amplitude.getLevel()
-	if(newAmp > lastAmp){
+	if(beatTime > beat){//newAmp > lastAmp
 		beatTime = 0
 
 		updateLights()
