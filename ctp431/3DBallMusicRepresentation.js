@@ -34,7 +34,8 @@ var lightArray = []
 function preload(){
 		soundFormats('mp3');
 		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
-		sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
+		sound = loadSound('assets/Evence - Falling');
 	  
 	}
 
