@@ -27,7 +27,7 @@ var highMap = mean + 2 * meanDev
 var beatTime = 0
 var beat = 1000
 var time
-var ptime
+var ptime = 0
 
 var lightArray = []
 //20 is lowest, 20K is highest hearable by human
@@ -182,7 +182,7 @@ function addLights(){
 }
 
 function updateLights(){
-
+	lightArray = []
 	for(i = 0; i < lightDensity ; ++i){
 		
 		//var randomDist = minLightDist + Math.random()*lightDist //for point light
