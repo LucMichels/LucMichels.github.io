@@ -76,7 +76,7 @@ function draw() {
 	translate(windowWidth/2,windowHeight/2,-3*sphereRadius)
   	box(windowWidth,windowHeight,1)
   	pop()
-	pointLight(250, 250, 250, 100, 100, 0)
+	//pointLight(250, 250, 250, 100, 100, 0)
 	ambientLight(ambiantLight)
 	c = color('#080808')
 	fill(c)
@@ -165,7 +165,7 @@ function addLights(){
 		
 		//var randomDist = minLightDist + Math.random()*lightDist //for point light
 		//var randomDirection = p5.Vector.random3D().normalize()
-		//print(randomDist+sphereRadius)
+		
 		//var position = randomDirection.mult(randomDist+sphereRadius) //for point light
 		
 		//var randomColor = color(round(Math.random()*255), round(Math.random()*255), round(Math.random()*255))
