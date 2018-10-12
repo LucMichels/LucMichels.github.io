@@ -163,19 +163,27 @@ function initArray(){
 function addLights(){
 	for(i = 0; i < lightDensity ; ++i){
 		
-		var randomDist = minLightDist + Math.random()*lightDist //for point light
-		var randomDirection = p5.Vector.random3D().normalize()
-		print(randomDist+sphereRadius)
-		var position = randomDirection.mult(randomDist+sphereRadius) //for point light
-		
-		var randomColor = color(round(Math.random()*255), round(Math.random()*255), round(Math.random()*255))
-
-		pointLight(randomColor, position)
-
+		//var randomDist = minLightDist + Math.random()*lightDist //for point light
 		//var randomDirection = p5.Vector.random3D().normalize()
+		//print(randomDist+sphereRadius)
+		//var position = randomDirection.mult(randomDist+sphereRadius) //for point light
+		
 		//var randomColor = color(round(Math.random()*255), round(Math.random()*255), round(Math.random()*255))
 
-		//directionalLight(randomColor, randomDirection.mult(-1))
+		//pointLight(randomColor, position)
+
+		var randomDirection = p5.Vector.random3D().normalize()
+		var randomColor
+		if(Math.random()>0.33){
+			randomColor = color(255, 0, 0)
+		} else if (Math.random()>0.33){
+			randomColor = color(0, 255, 0)
+		} else {
+			randomColor = color(0, 0, 255)
+		}
+		 
+
+		directionalLight(randomColor, randomDirection.mult(-1))
 
 	}
 }
