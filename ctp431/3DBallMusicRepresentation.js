@@ -236,5 +236,5 @@ function doubleClicked() {
 }
 
 function drawBeat(){
-	sphere(map(beatTime,0,beat,1,sphereRadius*1.1))
+	sphere(map(beatTime,0,beat,10,sphereRadius*1.1))
 }
