@@ -92,6 +92,8 @@ function draw() {
 	drawSound()
 	
 	pop()
+
+	addLights()
 }
 
 
@@ -163,7 +165,7 @@ function addLights(){
 		var randomDirection = p5.Vector.random3D().normalize()
 		//var randomDist = minLightDist + Math.random()*lightDist //for point light?
 		//var position = randomDirection*mult(randomDist+sphereRadius) //for point light?
-		var randomColor = color(Math.random(), Math.random(), Math.random())
+		var randomColor = color(round(Math.random()*255), round(Math.random()*255), round(Math.random()*255))
 
 		directionalLight(randomColor, randomDirection.mult(-1))
 
