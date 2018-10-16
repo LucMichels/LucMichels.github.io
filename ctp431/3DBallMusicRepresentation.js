@@ -34,6 +34,8 @@ var pause
 var restart
 var beatSave = 0
 
+var out = 0
+var in = 0
 
 var lightArray = []
 //20 is lowest, 20K is highest hearable by human
@@ -91,7 +93,12 @@ function draw() {
 		barray.push(brightness)
 	}
 
-
+	if(brightness< lowMap && brightness > highMap){
+		print("hoy")
+		out++
+	} else {
+		in++
+	}
 	
 	updateArray(round(map(brightness,lowMap,highMap,0,freqBrightnessAmpArray.length,true)))
 
@@ -245,9 +252,15 @@ function updateLights(){
 }
 
 function doubleClicked() {
+	print("--")
 	print(jStat.stdev(barray))
 	
 	print(jStat.mean( barray ))
+	print("-")
+	print(in)
+	print(out)
+	print(out*100/(in+out))
+	print("--")
 
 	
 }
