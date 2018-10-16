@@ -118,14 +118,17 @@ function draw() {
 		rotation += (mouseX - pmouseX)/smoothing
 	}
 	rotateY(rotation)
-	
 	drawSound()
+	if(sound.isPlaying()){
+		
+		drawBeat()
+		addLights()
+	}
 	
-	drawBeat()
 
 	pop()
 
-	addLights()
+	
 }
 
 
