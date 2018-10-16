@@ -48,7 +48,7 @@ function preload(){
 function setup() {
 	
 	//buttons
-	play = createButton('staart')
+	play = createButton('start')
 	play.position(19, 19);
  	play.mousePressed(playing);
 	pause = createButton('pause')
@@ -59,8 +59,9 @@ function setup() {
  	//restart.mousePressed(restart);
 	//text
 	textSize(32);
-	text('credit to stuff', 10, 30);
 	fill(255, 255, 255);
+	text('credit to stuff', 100, 30);
+	
 
 	//init
 	createCanvas(windowWidth, windowHeight,WEBGL)
@@ -102,11 +103,11 @@ function draw() {
 
 	background(0)
 	specularMaterial(255)
-	fill(0)
-	push()
-	translate(windowWidth/2,windowHeight/2,-3*sphereRadius)
-  	box(windowWidth,windowHeight,1)
-  	pop()
+	//fill(0)
+	//push()
+	//translate(windowWidth/2,windowHeight/2,-3*sphereRadius)
+  	//box(windowWidth,windowHeight,1)
+  	//pop()
 	//pointLight(250, 250, 250, 100, 100, 0)
 	ambientLight(ambiantLight)
 	c = color('#080808')
