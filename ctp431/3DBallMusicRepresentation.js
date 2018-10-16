@@ -26,7 +26,7 @@ var highMap = Math.min(mean + 2.2 * meanDev, 20000)
 var lastAmp
 var amplitude
 var beatTime = 0
-var beat = 468.75
+var beat = 480
 var time
 var ptime = 0
 var play
