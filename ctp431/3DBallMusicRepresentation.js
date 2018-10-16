@@ -257,12 +257,12 @@ function drawBeat(){
 	sphere(map(beatTime,0,beat,sphereRadius*0.5,sphereRadius*0.95))
 }
 
-var play(){
+function play(){
 	sound.stop()
 	sound.play()
 	play.label='restart'
 }
-var pause(){
+function pause(){
 	if(pause.label == 'pause'){
 		sound.pause()
 		pause.label = 'resume'
