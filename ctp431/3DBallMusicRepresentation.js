@@ -100,9 +100,7 @@ function draw() {
 
 
 	background(0)
-	textSize(32);
-	fill(255, 255, 255);
-	text('credit to stuff', 100, 30);
+	
 	specularMaterial(255)
 	//fill(0)
 	//push()
