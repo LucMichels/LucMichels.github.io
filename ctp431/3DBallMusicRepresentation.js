@@ -255,14 +255,14 @@ function drawBeat(){
 function playing(){
 	sound.stop()
 	sound.play()
-	play.elt.html() = 'restart'
+	play.elt.html('restart') 
 }
 function pausing(){
 	if(sound.isPlaying()){
 		sound.pause()
-		pause.elt.html()='resume'
+		pause.elt.html('resume')
 	} else {
 		sound.play()
-		pause.elt.html() = 'pause'
+		pause.elt.html( 'pause') 
 	}
 }
