@@ -48,7 +48,7 @@ function preload(){
 function setup() {
 	
 	//buttons
-	play = createButton('starrrt')
+	play = createButton('start')
 	play.position(19, 49);
  	play.mousePressed(playing);
 	pause = createButton('pause')
