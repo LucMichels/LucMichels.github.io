@@ -52,7 +52,7 @@ function setup() {
 	play.position(19, 89);
  	play.mousePressed(playing);
 	pause = createButton('pause')
-	pause.position(89, 89);
+	pause.position(105, 89);
  	pause.mousePressed(pausing);
 	//restart = createButton('restart');
 	//restart.position(19, 19);
