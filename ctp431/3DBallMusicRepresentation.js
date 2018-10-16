@@ -19,8 +19,8 @@ var minLightDist = 10
 var lightDist = 90
 var lightDensity = 10
 var barray = []
-var mean = 4490.880711559803
-var meanDev = 2954.1245194845305//2823.9915339942213
+var mean = 5477.654299295019
+var meanDev = 1637.9633714177144
 var lowMap = Math.max(mean - 2 * meanDev,0)
 var highMap = Math.min(mean + 2 * meanDev, 20000)
 var lastAmp
@@ -51,7 +51,7 @@ function setup() {
 	play.position(19, 19);
  	play.mousePressed(playing);
 	pause = createButton('pause')
-	pause.position(19, 19);
+	pause.position(59, 19);
  	pause.mousePressed(pausing);
 	//restart = createButton('restart');
 	//restart.position(19, 19);
@@ -244,12 +244,7 @@ function doubleClicked() {
 	print(jStat.stdev(barray))
 	
 	print(jStat.mean( barray ))
-	print(jStat.meandev( barray ))
-	print(jStat.median( barray ))
-	
-	print(jStat.meddev( barray ))
 
-	print(jStat.quartiles(barray))
 	
 }
 
