@@ -49,10 +49,10 @@ function setup() {
 	
 	//buttons
 	play = createButton('start')
-	play.position(19, 69);
+	play.position(19, 109);
  	play.mousePressed(playing);
 	pause = createButton('pause')
-	pause.position(69, 69);
+	pause.position(69, 109);
  	pause.mousePressed(pausing);
 	//restart = createButton('restart');
 	//restart.position(19, 19);
