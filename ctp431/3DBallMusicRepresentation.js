@@ -32,7 +32,7 @@ var ptime = 0
 var play
 var pause
 var restart
-var playing = false
+
 
 var lightArray = []
 //20 is lowest, 20K is highest hearable by human
@@ -255,14 +255,14 @@ function drawBeat(){
 function playing(){
 	sound.stop()
 	sound.play()
-	play.label='restart'
+	play.value('restart')
 }
 function pausing(){
-	if(pause.label == 'pause'){
+	if(pause.value() == 'pause'){
 		sound.pause()
-		pause.label = 'resume'
+		pause.value('restart')
 	} else {
 		sound.play()
-		pause.label = 'pause'
+		pause.value('restart')
 	}
 }
