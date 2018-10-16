@@ -265,3 +265,4 @@ function pausing(){
 		sound.play()
 		pause.elt.html() = 'pause'
 	}
+}
