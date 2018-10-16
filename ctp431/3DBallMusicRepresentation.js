@@ -47,10 +47,10 @@ function preload(){
 function setup() {
 	
 	//buttons
-	play = createButton('start')
+	play = createButton('start/restart')
 	play.position(19, 19);
  	play.mousePressed(playing);
-	pause = createButton('pause')
+	pause = createButton('pause/unpause')
 	pause.position(79, 19);
  	pause.mousePressed(pausing);
 	//restart = createButton('restart');
@@ -255,14 +255,14 @@ function drawBeat(){
 function playing(){
 	sound.stop()
 	sound.play()
-	play.elt.value = 'restart'
+	play.elt.label = 'restart'
 }
 function pausing(){
-	if(pause.elt.value == 'pause'){
+	if(sound.isPlaying()){
 		sound.pause()
-		pause.elt.value='resume'
+		pause.elt.label='resume'
 	} else {
 		sound.play()
-		pause.elt.value='pause'
+		pause.elt.label='pause'
 	}
 }
