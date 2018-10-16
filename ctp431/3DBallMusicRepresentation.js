@@ -21,8 +21,8 @@ var lightDensity = 7
 var barray = []
 var mean = 5477.654299295019
 var meanDev = 1637.9633714177144
-var lowMap = Math.max(mean - 2 * meanDev,0)
-var highMap = Math.min(mean + 2 * meanDev, 20000)
+var lowMap = Math.max(mean - 2.2 * meanDev,0)
+var highMap = Math.min(mean + 2.2 * meanDev, 20000)
 var lastAmp
 var amplitude
 var beatTime = 0
@@ -49,10 +49,10 @@ function setup() {
 	
 	//buttons
 	play = createButton('start')
-	play.position(19, 49);
+	play.position(19, 69);
  	play.mousePressed(playing);
 	pause = createButton('pause')
-	pause.position(69, 49);
+	pause.position(69, 69);
  	pause.mousePressed(pausing);
 	//restart = createButton('restart');
 	//restart.position(19, 19);
