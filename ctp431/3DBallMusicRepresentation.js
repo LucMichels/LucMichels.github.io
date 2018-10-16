@@ -49,10 +49,10 @@ function setup() {
 	//buttons
 	play = createButton('start')
 	play.position(19, 19);
- 	play.mousePressed(play);
+ 	play.mousePressed(playing);
 	pause = createButton('pause')
 	pause.position(19, 19);
- 	pause.mousePressed(pause);
+ 	pause.mousePressed(pausing);
 	//restart = createButton('restart');
 	//restart.position(19, 19);
  	//restart.mousePressed(restart);
@@ -257,12 +257,12 @@ function drawBeat(){
 	sphere(map(beatTime,0,beat,sphereRadius*0.5,sphereRadius*0.95))
 }
 
-function play(){
+function playing(){
 	sound.stop()
 	sound.play()
 	play.label='restart'
 }
-function pause(){
+function pausing(){
 	if(pause.label == 'pause'){
 		sound.pause()
 		pause.label = 'resume'
