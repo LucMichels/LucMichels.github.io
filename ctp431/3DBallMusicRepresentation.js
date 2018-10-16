@@ -17,7 +17,7 @@ var perimeter
 var boxSide
 var minLightDist = 10
 var lightDist = 90
-var lightDensity = 10
+var lightDensity = 7
 var barray = []
 var mean = 5477.654299295019
 var meanDev = 1637.9633714177144
@@ -58,9 +58,7 @@ function setup() {
 	//restart.position(19, 19);
  	//restart.mousePressed(restart);
 	//text
-	textSize(32);
-	fill(255, 255, 255);
-	text('credit to stuff', 100, 30);
+	
 	
 
 	//init
@@ -102,6 +100,9 @@ function draw() {
 
 
 	background(0)
+	textSize(32);
+	fill(255, 255, 255);
+	text('credit to stuff', 100, 30);
 	specularMaterial(255)
 	//fill(0)
 	//push()
