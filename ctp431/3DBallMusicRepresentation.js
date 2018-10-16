@@ -32,6 +32,7 @@ var ptime = 0
 var play
 var pause
 var restart
+var beatSave = 0
 
 
 var lightArray = []
@@ -47,7 +48,7 @@ function preload(){
 function setup() {
 	
 	//buttons
-	play = createButton('strt')
+	play = createButton('staart')
 	play.position(19, 19);
  	play.mousePressed(playing);
 	pause = createButton('pause')
@@ -258,14 +259,17 @@ function drawBeat(){
 function playing(){
 	sound.stop()
 	sound.play()
-	play.html('restart') 
+	play.html('restart')
+	beatTime = 0 
 }
 function pausing(){
 	if(sound.isPlaying()){
 		sound.pause()
 		pause.html('resume')
+		beatSave = beatTime
 	} else {
 		sound.play()
 		pause.html( 'pause') 
+		beatTime = beatSave
 	}
 }
