@@ -260,9 +260,9 @@ function playing(){
 function pausing(){
 	if(pause.value() == 'pause'){
 		sound.pause()
-		pause.value('restart')
+		pause.value('resume')
 	} else {
 		sound.play()
-		pause.value('restart')
+		pause.value('pause')
 	}
 }
