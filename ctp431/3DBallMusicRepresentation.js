@@ -47,7 +47,7 @@ function preload(){
 function setup() {
 	
 	//buttons
-	play = createButton('staart')
+	play = createButton('strt')
 	play.position(19, 19);
  	play.mousePressed(playing);
 	pause = createButton('pause')
@@ -255,14 +255,14 @@ function drawBeat(){
 function playing(){
 	sound.stop()
 	sound.play()
-	play.elt.html('restart') 
+	play.html('restart') 
 }
 function pausing(){
 	if(sound.isPlaying()){
 		sound.pause()
-		pause.elt.html('resume')
+		pause.html('resume')
 	} else {
 		sound.play()
-		pause.elt.html( 'pause') 
+		pause.html( 'pause') 
 	}
 }
