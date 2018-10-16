@@ -13,7 +13,6 @@ var freqsRanges = [20, 63, 125, 250, 500, 1000, 2000, 4000, 9000, 20000]//[20, 4
 var freqSmoothing = 0.5
 var residualSmoothing = 0.95
 var fft
-var sound
 var perimeter
 var boxSide
 var minLightDist = 10
@@ -30,6 +29,10 @@ var beatTime = 0
 var beat = 468.75
 var time
 var ptime = 0
+var play
+var pause
+var restart
+var playing = false
 
 var lightArray = []
 //20 is lowest, 20K is highest hearable by human
@@ -37,12 +40,28 @@ function preload(){
 		soundFormats('mp3');
 		//sound = loadSound('assets/AdhesiveWombat - 8 Bit Adventure.mp3');
 		//sound = loadSound('assets/queen-bohemian-rhapsody-official-video.mp3');
-		sound = loadSound('assets/Evence - Falling');
+		sound = loadSound('bensound-summer.mp3');
 	  
 	}
 
 function setup() {
 	
+	//buttons
+	play = createButton('start')
+	play.position(19, 19);
+ 	play.mousePressed(play);
+	pause = createButton('pause')
+	pause.position(19, 19);
+ 	pause.mousePressed(pause);
+	//restart = createButton('restart');
+	//restart.position(19, 19);
+ 	//restart.mousePressed(restart);
+	//text
+	textSize(32);
+	text('credit to stuff', 10, 30);
+	fill(255, 255, 255);
+
+	//init
 	createCanvas(windowWidth, windowHeight,WEBGL)
 	padding = QUARTER_PI/5
 	minAngle = -HALF_PI+padding
@@ -55,12 +74,11 @@ function setup() {
 	initArray()
 	boxSide = (1/freqBrightnessAmpArray.length)*0.33 *perimeter
 
-	sound.play()
+	
 	amplitude = new p5.Amplitude();
-
-	fft = new p5.FFT()
 	fft.setInput(sound)
-	amplitude.setInput(sound)
+	fft = new p5.FFT()
+	
 	
 }
 
@@ -237,4 +255,19 @@ function doubleClicked() {
 
 function drawBeat(){
 	sphere(map(beatTime,0,beat,sphereRadius*0.5,sphereRadius*0.95))
+}
+
+var play(){
+	sound.stop()
+	sound.play()
+	play.label='restart'
+}
+var pause(){
+	if(pause.label == 'pause'){
+		sound.pause()
+		pause.label = 'resume'
+	} else {
+		sound.play()
+		pause.label = 'pause'
+	}
 }
