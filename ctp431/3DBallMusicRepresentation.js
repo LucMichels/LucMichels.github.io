@@ -76,9 +76,9 @@ function setup() {
 
 	
 	amplitude = new p5.Amplitude();
-	fft.setInput(sound)
-	fft = new p5.FFT()
 	
+	fft = new p5.FFT()
+	fft.setInput(sound)
 	
 }
 
