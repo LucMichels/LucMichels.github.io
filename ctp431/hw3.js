@@ -66,10 +66,10 @@ TR808Tone1.prototype.setup = function() {
 	if(filter_onoff){
 
 		//biquad filter
-		this.filter = this.context.createBiquadFilter();
+		var filter = this.context.createBiquadFilter();
 		filter.type = 'lowpass';
-		filter.frequency = filter_freq
-		filter.Q = filter_q
+		filter.frequency.value = filter_freq
+		filter.Q.value = filter_q
 
 		this.osc.connect(this.gain);
 		this.gain.connect(filter)	
@@ -149,10 +149,10 @@ TR808Tone2.prototype.setup = function() {
 	
 	if(filter_onoff){
 		//biquad filter
-		this.filter = this.context.createBiquadFilter();
+		var filter = this.context.createBiquadFilter();
 		filter.type = 'lowpass';
-		filter.frequency = filter_freq
-		filter.Q = filter_q
+		filter.frequency.value = filter_freq
+		filter.Q.value = filter_q
 
 		noiseFilter.connect(this.noiseEnvelope);
 		this.noiseEnvelope.connect(filter);
