@@ -1,6 +1,28 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();
 
+//filter variables
+ var filter_onoff = false;
+ var filter_freq = 1000;
+ var filter_q = 1;
+
+ //set_filter_onoff(status)
+ //set_filter_freq(freq)
+ //set_filter_q(q)
+
+//filter setters
+function set_filter_onoff(status){
+	filter_onoff = status
+}
+function set_filter_freq(freq){
+	filter_freq = freq
+}
+function set_filter_q(q){
+	filter_q = q
+}
+
+
+
 
 // select a preset
 window.onload=function(){
@@ -38,9 +60,15 @@ TR808Tone1.prototype.setup = function() {
 	// envelope
 	this.gain = this.context.createGain();
 
+	//biquad filter
+	this.filter = this.context.createBiquadFilter();
+	filter.type = 'lowpass';
+
 	// connect
 	this.osc.connect(this.gain);
-	this.gain.connect(this.context.destination)		
+	this.gain.connect(filter)	
+	filter.connect(this.context.destination)	
+
 };
 
 
@@ -103,10 +131,15 @@ TR808Tone2.prototype.setup = function() {
 	noiseFilter.Q.value = 1;
 	this.noise.connect(noiseFilter);
 	
+	//biquad filter
+	this.filter = this.context.createBiquadFilter();
+	filter.type = 'lowpass';
+
 	// amp envelop
 	this.noiseEnvelope = this.context.createGain();
 	noiseFilter.connect(this.noiseEnvelope);
-	this.noiseEnvelope.connect(this.context.destination);
+	this.noiseEnvelope.connect(filter);
+	filter.connect(this.context.destination);
 };
 
 TR808Tone2.prototype.trigger = function(time) {

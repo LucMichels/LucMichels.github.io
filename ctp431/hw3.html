@@ -174,24 +174,25 @@ play_button.on('change',function(v) {
 tempo_dial.on('change',function(v) {
     // convert BPM to internal in milisecond
     // note that 4 steps correspond to one beat in the sequencer
-    var inverval = 10;   // <-- replace this with the BPM-to-ms conversion equation
+    var inverval = 15000/v;//v*1500;   // b/min = 4*step/60sec = 4*step/(60*1000)millisec => 15000*b/min = step/millisec
+
     sequencer.interval.ms(inverval)
 })
 
 
 filter_onoff.on('change',function(v) {
-    // set_filter_onoff(v);
+    set_filter_onoff(v);
 })
 
 // Filter freq
 filter_dial1.on('change',function(v) {
-    // set_filter_freq(v);
+     set_filter_freq(v);
 })
 
 
 // Filter freq
 filter_dial2.on('change',function(v) {
-    // set_filter_q(v);
+     set_filter_q(v);
 })
 
 
