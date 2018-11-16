@@ -63,7 +63,7 @@ TR808Tone1.prototype.setup = function() {
 	
 
 	// connect
-	if(filter_onoff){
+	if(filter_onoff == true){
 
 		//biquad filter
 		var filter = this.context.createBiquadFilter();
@@ -147,7 +147,7 @@ TR808Tone2.prototype.setup = function() {
 	// amp envelop
 	this.noiseEnvelope = this.context.createGain();
 	
-	if(filter_onoff){
+	if(filter_onoff == true){
 		//biquad filter
 		var filter = this.context.createBiquadFilter();
 		filter.type = 'lowpass';
