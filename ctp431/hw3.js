@@ -60,14 +60,25 @@ TR808Tone1.prototype.setup = function() {
 	// envelope
 	this.gain = this.context.createGain();
 
-	//biquad filter
-	this.filter = this.context.createBiquadFilter();
-	filter.type = 'lowpass';
+	
 
 	// connect
-	this.osc.connect(this.gain);
-	this.gain.connect(filter)	
-	filter.connect(this.context.destination)	
+	if(filter_onoff){
+
+		//biquad filter
+		this.filter = this.context.createBiquadFilter();
+		filter.type = 'lowpass';
+		filter.frequency = filter_freq
+		filter.Q = filter_q
+
+		this.osc.connect(this.gain);
+		this.gain.connect(filter)	
+		filter.connect(this.context.destination)	
+	} else {
+		this.osc.connect(this.gain);
+		this.gain.connect(this.context.destination)		
+	}
+	
 
 };
 
@@ -131,15 +142,26 @@ TR808Tone2.prototype.setup = function() {
 	noiseFilter.Q.value = 1;
 	this.noise.connect(noiseFilter);
 	
-	//biquad filter
-	this.filter = this.context.createBiquadFilter();
-	filter.type = 'lowpass';
+	
 
 	// amp envelop
 	this.noiseEnvelope = this.context.createGain();
-	noiseFilter.connect(this.noiseEnvelope);
-	this.noiseEnvelope.connect(filter);
-	filter.connect(this.context.destination);
+	
+	if(filter_onoff){
+		//biquad filter
+		this.filter = this.context.createBiquadFilter();
+		filter.type = 'lowpass';
+		filter.frequency = filter_freq
+		filter.Q = filter_q
+
+		noiseFilter.connect(this.noiseEnvelope);
+		this.noiseEnvelope.connect(filter);
+		filter.connect(this.context.destination);
+	} else {
+
+		noiseFilter.connect(this.noiseEnvelope);
+		this.noiseEnvelope.connect(this.context.destination);
+	}
 };
 
 TR808Tone2.prototype.trigger = function(time) {
