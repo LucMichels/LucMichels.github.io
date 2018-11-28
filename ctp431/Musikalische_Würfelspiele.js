@@ -14,13 +14,11 @@ window.onload = function () {
 		  });
 		  
 	piano.toMaster();
+	
+};
+
+function playMusic(){
 	MidiConvert.load("assets/0/cda070.mid", function(midi) {
-
-		midi.instrumentNumber = 1
-		
-		midi.instrumentFamily = "Piano"
-
-		midi.instrument = "Acoustic Grand Piano"
 		
 	  // make sure you set the tempo before you schedule the events
 	  Tone.Transport.bpm.value = midi.header.bpm
@@ -36,4 +34,4 @@ window.onload = function () {
 	  // start the transport to hear the events
 	  Tone.Transport.start()
 	})
-};
+}
