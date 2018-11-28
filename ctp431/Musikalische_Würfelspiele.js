@@ -9,26 +9,19 @@ window.onload = function () {
 
 	})
 	var synth = new Tone.PolySynth(8).toMaster()
-
+	var piano = SampleLibrary.load({
+		  instruments: "piano"
+		  });
+		  
+	piano.toMaster();
 	MidiConvert.load("assets/0/cda070.mid", function(midi) {
 
 		midi.instrumentNumber = 1
 		
-		midi.instrumentFamily = "Acoustic_Grand_Piano"
+		midi.instrumentFamily = "Piano"
 
-		midi.instrument = "Piano"
-		var piano = SampleLibrary.load({
-		  instruments: "piano"
-		  });
-		  
-		 piano.toMaster();
-		 for(int i =0; i = 200000; ++i){
-		 	if(i%2 == 0){
-
-		 	} else {
-		 		
-		 	}
-		 }
+		midi.instrument = "Acoustic_Grand_Piano"
+		
 	  // make sure you set the tempo before you schedule the events
 	  Tone.Transport.bpm.value = midi.header.bpm
 	  
