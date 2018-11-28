@@ -17,14 +17,21 @@ window.onload = function () {
 		midi.instrumentFamily = "Acoustic_Grand_Piano"
 
 		midi.instrument = "Piano"
-
-	  // make sure you set the tempo before you schedule the events
-	  Tone.Transport.bpm.value = midi.header.bpm
-	  var piano = SampleLibrary.load({
+		var piano = SampleLibrary.load({
 		  instruments: "piano"
 		  });
 		  
 		 piano.toMaster();
+		 for(int i =0; i = 200000; ++i){
+		 	if(i%2 == 0){
+
+		 	} else {
+		 		
+		 	}
+		 }
+	  // make sure you set the tempo before you schedule the events
+	  Tone.Transport.bpm.value = midi.header.bpm
+	  
 	  // pass in the note events from one of the tracks as the second argument to Tone.Part 
 	  var midiPart = new Tone.Part(function(time, note) {
 
