@@ -2,6 +2,7 @@ var player = MIDI.player
 
 window.onload = function () {
 	MIDI.loadPlugin({
+		soundfontUrl: "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
 		instrument: "acoustic_grand_piano",
 		onprogress: function(state, progress) {
 			console.log(state, progress);
