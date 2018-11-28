@@ -11,7 +11,10 @@ window.onload = function () {
 	var synth = new Tone.PolySynth(8).toMaster()
 
 	MidiConvert.load("assets/0/cda070.mid", function(midi) {
-
+		midi.instrumentNumber = 1
+		console.log("intru nb" + midi.instrumentNumber)
+	  console.log("intru fam" +midi.instrumentFamily)
+	  console.log("intru " +midi.instrument)
 	  // make sure you set the tempo before you schedule the events
 	  Tone.Transport.bpm.value = midi.header.bpm
 
