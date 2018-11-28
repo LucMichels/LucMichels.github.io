@@ -11,7 +11,16 @@ window.onload = function () {
 	var synth = new Tone.PolySynth(8).toMaster()
 
 	MidiConvert.load("assets/0/cda070.mid", function(midi) {
+
 		midi.instrumentNumber = 1
+		console.log("intru nb" + midi.instrumentNumber)
+	  console.log("intru fam" +midi.instrumentFamily)
+	  console.log("intru " +midi.instrument)
+		midi.instrumentFamily = "Acoustic_Grand_Piano"
+		console.log("intru nb" + midi.instrumentNumber)
+	  console.log("intru fam" +midi.instrumentFamily)
+	  console.log("intru " +midi.instrument)
+		midi.instrument = "Piano"
 		console.log("intru nb" + midi.instrumentNumber)
 	  console.log("intru fam" +midi.instrumentFamily)
 	  console.log("intru " +midi.instrument)
