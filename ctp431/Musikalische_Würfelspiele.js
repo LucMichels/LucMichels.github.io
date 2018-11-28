@@ -49,7 +49,7 @@ function playMP3(){
 }
 function playWAV(){
 	playerWav.start()
-	player.buffer.onended(playWAV2)
+	player.buffer.onended = playWAV2 
 }
 function playWAV2(){
 	playerWav2.start()
