@@ -2,6 +2,7 @@
 var piano
 var synth
 var player
+var playerWav
 window.onload = function () {
 	// load a midi file
 	MidiConvert.load("assets/0/cda010.mid", function(midi) {
@@ -19,6 +20,7 @@ window.onload = function () {
 	player = new Tone.Player("./assets/0/cda070.mp3", function(){
 	//the player is now ready	
 	}).toMaster();
+	playerWav = new Tone.Player("./assets/0/cda070.wav").toMaster();
 	
 };
 
@@ -42,4 +44,7 @@ function playMusic(){
 }
 function playMP3(){
 	player.start()
+}
+function playWAV(){
+	playerWav.start()
 }
