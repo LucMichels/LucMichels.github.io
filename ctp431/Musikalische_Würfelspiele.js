@@ -9,6 +9,6 @@ window.onload = function () {
 	});
 	 
 	// Load a MIDI file
-	Player.loadFile('./test.mid');
+	Player.loadFile('./assets/0/cda070.mid');
 	Player.play();
 };
