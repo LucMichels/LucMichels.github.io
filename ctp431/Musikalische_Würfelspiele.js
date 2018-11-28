@@ -3,9 +3,9 @@
 window.onload = function () {
 	// load a midi file
 	MidiConvert.load("assets/0/cda010.mid", function(midi) {
-	  console.log(midi.instrumentNumber)
-	  console.log(midi.instrumentFamily)
-	  console.log(midi.instrument)
+	  console.log("intru nb" + midi.instrumentNumber)
+	  console.log("intru fam" +midi.instrumentFamily)
+	  console.log("intru " +midi.instrument)
 
 	})
 	var synth = new Tone.PolySynth(8).toMaster()
