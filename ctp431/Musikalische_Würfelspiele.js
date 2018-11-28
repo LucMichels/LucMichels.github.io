@@ -13,25 +13,23 @@ window.onload = function () {
 	MidiConvert.load("assets/0/cda070.mid", function(midi) {
 
 		midi.instrumentNumber = 1
-		console.log("intru nb " + midi.instrumentNumber)
-	  console.log("intru fam " +midi.instrumentFamily)
-	  console.log("intru " +midi.instrument)
+		
 		midi.instrumentFamily = "Acoustic_Grand_Piano"
-		console.log("intru nb " + midi.instrumentNumber)
-	  console.log("intru fam " +midi.instrumentFamily)
-	  console.log("intru " +midi.instrument)
+
 		midi.instrument = "Piano"
-		console.log("intru nb " + midi.instrumentNumber)
-	  console.log("intru fam " +midi.instrumentFamily)
-	  console.log("intru " +midi.instrument)
+
 	  // make sure you set the tempo before you schedule the events
 	  Tone.Transport.bpm.value = midi.header.bpm
-
+	  var piano = SampleLibrary.load({
+		  instruments: "piano"
+		  });
+		  
+		 piano.toMaster();
 	  // pass in the note events from one of the tracks as the second argument to Tone.Part 
 	  var midiPart = new Tone.Part(function(time, note) {
 
 	    //use the events to play the synth
-	    synth.triggerAttackRelease(note.name, note.duration, time, note.velocity)
+	    piano.triggerAttackRelease(note.name, note.duration, time, note.velocity)
 
 	  }, midi.tracks[0].notes).start()
 
