@@ -41,5 +41,5 @@ function playMusic(){
 	})
 }
 function playMP3(){
-	player.play()
+	player.start()
 }
