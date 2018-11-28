@@ -1,7 +1,7 @@
 
 
 window.onload = function () {
-	//var MidiPlayer = require('midi-player-js');
+	var MidiPlayer = require('midiplayer.min');
 	 
 	// Initialize player and register event handler
 	var Player = new MidiPlayer.Player(function(event) {
