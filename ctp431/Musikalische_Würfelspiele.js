@@ -20,7 +20,7 @@ window.onload = function () {
 		
 		midi.instrumentFamily = "Piano"
 
-		midi.instrument = "Acoustic_Grand_Piano"
+		midi.instrument = "Acoustic Grand Piano"
 		
 	  // make sure you set the tempo before you schedule the events
 	  Tone.Transport.bpm.value = midi.header.bpm
