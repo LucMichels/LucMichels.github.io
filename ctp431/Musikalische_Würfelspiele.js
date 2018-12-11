@@ -35,6 +35,9 @@ var musicArray = [
 [14,83,79,170,93,151,172,111,8,78,131]
 ]
 
+function preload(){
+	loadAllSounds()
+}
 function setup(){
 	createCanvas(400,400);  
 // play button
@@ -42,10 +45,6 @@ function setup(){
   playSoundButton.position(25, 25);
   playSoundButton.mousePressed(playMusic);
   
-  // stop button
-  loadAllSoundButton = createButton('Stop');
-  loadAllSoundButton.position(75, 25);
-  loadAllSoundButton.mousePressed(loadAllSounds);
 }
 function draw() {
 
@@ -59,9 +58,11 @@ function playMusic(){
 //onended function added to all sounds
 function playNext(){
 	if(curSound < 15){
-		curSound +=1
-		playlist[curSound].start()
+		playlist[curSound].play()
 		playlist[curSound].onended(playNext)
+		curSound +=1
+		console.log(playlist[curSound])
+		
 	}
 }
 
@@ -73,6 +74,7 @@ function startPlaylist(){
 function loadAllSounds(){
 	for(let i = 0; i<176; ++i){
 		//check if not already cached; if not: cache it
+		console.log(i + " loaded")
 		if(loadedSongs[i] == undefined){
 			loadedSongs[i] = loadSound(path + "M" + (i+1) + fileType)
 		}
@@ -81,8 +83,10 @@ function loadAllSounds(){
 function loadNeededSounds(){
 	playlist = []
 	for(var i = 0; i < curSoundArray.length; ++i){
+
 		//find sound index
 		var index = musicArray[i][curSoundArray[i]] - 1
+		console.log(index + " index")
 		//check if sound was cached
 		if(loadedSongs[index] != undefined){
 			playlist[i] = loadedSongs[index]
@@ -116,7 +120,7 @@ function computeSoundArray(){
 	stop = true
 	curSoundArray = [] //reinit sound array
 	var dices = computeAllDices()
-	for(var i = 0; i < 16; i+=2){
+	for(var i = 0; i < 32; i+=2){
 
 		var dice1 = dices[i]
 		var dice2 = dices[i+1]
