@@ -36,7 +36,7 @@ var musicArray = [
 ]
 
 function setup(){
-
+	createCanvas(400,400);  
 // play button
   playSoundButton = createButton('Play');
   playSoundButton.position(25, 25);
