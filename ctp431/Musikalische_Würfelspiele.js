@@ -5,6 +5,8 @@ var player
 var playerWav
 var playerWav2
 
+var playSoundButton, loadAllSoundButton;
+
 //playlist implementation
 var curSound = 0
 var path = "assets/sounds/"
@@ -33,6 +35,18 @@ var musicArray = [
 [14,83,79,170,93,151,172,111,8,78,131]
 ]
 
+function setup(){
+
+// play button
+  playSoundButton = createButton('Play');
+  playSoundButton.position(25, 25);
+  playSoundButton.mousePressed(playMusic);
+  
+  // stop button
+  loadAllSoundButton = createButton('Stop');
+  loadAllSoundButton.position(75, 25);
+  loadAllSoundButton.mousePressed(loadAllSounds);
+}
 function playMusic(){
 	computeSoundArray()
 	loadNeededSounds()
