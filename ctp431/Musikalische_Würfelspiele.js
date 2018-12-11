@@ -47,6 +47,9 @@ function setup(){
   loadAllSoundButton.position(75, 25);
   loadAllSoundButton.mousePressed(loadAllSounds);
 }
+function draw() {
+
+}
 function playMusic(){
 	computeSoundArray()
 	loadNeededSounds()
