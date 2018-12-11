@@ -60,8 +60,8 @@ function playMusic(){
 function playNext(){
 	if(curSound < 15){
 		curSound +=1
-		playlist[i].start()
-		playlist[i].onended(playNext)
+		playlist[curSound].start()
+		playlist[curSound].onended(playNext)
 	}
 }
 
