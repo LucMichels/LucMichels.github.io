@@ -130,6 +130,10 @@ function playNext(){
 		curMesure = playlist[curSound]
 		curMesure.play()
 		curMesure.onended(playNext)
+		if(curSound>0){
+			drawMesure(curSound-1).style('filter:none;')
+		}
+		
 		drawMesure(curSound).style('filter:invert(100%);')
 		curSound +=1
 		console.log(playlist[curSound])
@@ -137,8 +141,9 @@ function playNext(){
 		
 
 		
-	} else {
+	} else if (curSound == 16){
 		playing = false
+		drawMesure(curSound-1).style('filter:none;')
 	}
 }
 function startPlaylist(){
@@ -152,9 +157,9 @@ function getElement(index,i,firstDraw = false){
 	//add to elem array
 	var elem 
 	if(i == 0 && firstDraw){
-		elem = new p5.Element(createImg(imagePath + index + imageFormat, playNext).elt)
+		elem = new p5.Element(createImg(imagePath + (index+1) + imageFormat, playNext).elt)
 	} else {
-		elem = new p5.Element(createImg(imagePath + index + imageFormat).elt)
+		elem = new p5.Element(createImg(imagePath + (index+1) + imageFormat).elt)
 	}
 	
 	return elem
@@ -168,8 +173,9 @@ function drawMesure(i, firstDraw = false){
 	element.position(x,y)
 	return element
 	
-}
+}//element.getBoundingClientRect();
 function drawScore(){
+	
 	drawn = 0
 	//first part dice rolls
 
