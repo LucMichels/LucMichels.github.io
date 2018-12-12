@@ -11,6 +11,7 @@ var playSoundButton, stopSoundButton;
 //score drawing
 var MESURE_WIDTH = 110
 var MESURE_HEIGHT = 120
+var DICE_PADDING = MESURE_WIDTH/2
 //init in setup where window dimentions are
 var SCORE_X_START
 var SCORE_Y_END
@@ -84,7 +85,7 @@ function draw() {
 	}
 }
 function drawMozartAndPlay(){
-	var elem = new p5.Element(createImg(backgroundPath,drawScore).elt)
+	var elem = new p5.Element(createImg(backgroundPath,drawWhite).elt)
 	elem.position(0,MESURE_HEIGHT)
 	elem.style('height:'+ window.innerHeight +'px;');
 	
@@ -170,10 +171,19 @@ function drawMesure(i, firstDraw = false){
 	var element = getElement(index,i,firstDraw)
 	var x = SCORE_X_START + Math.abs(i%8)*MESURE_WIDTH
 	var y = SCORE_Y_START + (i>=8 ? 2 : 0) * MESURE_HEIGHT
+
 	element.position(x,y)
+	//draw corresponding dice 
+	var xDice1 
 	return element
 	
-}//element.getBoundingClientRect();
+}
+function drawWhite(){
+	var elem = new p5.Element(createImg("assets/background/white.png", drawScore).elt)
+	elem.position(SCORE_X_START,SCORE_Y_START-MESURE_HEIGHT)
+	elem.style('height:'+ (5*MESURE_HEIGHT) +'px;');
+	elem.style('width:'+ (8*MESURE_WIDTH) +'px;');
+}
 function drawScore(){
 	
 	drawn = 0
