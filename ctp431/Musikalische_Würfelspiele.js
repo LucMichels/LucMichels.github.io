@@ -5,7 +5,7 @@ var player
 var playerWav
 var playerWav2
 
-var playSoundButton, loadAllSoundButton;
+var playSoundButton, stopSoundButton;
 
 
 //score drawing
@@ -17,7 +17,7 @@ var SCORE_Y_END
 
 //playlist implementation
 
-
+var drawn = 0
 var wasDrawn = false
 var imagePath = 'assets/scores/'
 var imageFormat = '.png'
@@ -31,8 +31,9 @@ var fileType = ".wav"
 var soundArray = []
 var playing = false
 var curMesure
+var curElemArray = []
 var dices = []
-var backgroundPath = "assets/background/mozart.jpg"
+var backgroundPath = "assets/background/mozart.png"
 var musicArray = [
 [96,32,69,40,148,104,152,119,98,3,54],
 [22,6,95,17,74,157,60,84,142,87,130],
@@ -54,46 +55,88 @@ var musicArray = [
 
 function preload(){
 	loadAllSounds()
-	loadAllImages()
 }
 function setup(){
+
 	//init all constant variables
-	SCORE_X_START = window.innerWidth/6
+	SCORE_X_START = window.innerWidth/3
 	SCORE_Y_START = window.innerHeight/4
 	createCanvas(window.innerWidth, window.innerHeight);  
+	drawMozart()
 // play button
   playSoundButton = createButton('Play');
   playSoundButton.position(25, 25);
   playSoundButton.mousePressed(playMusic);
+
+  // play button
+  stopSoundButton = createButton('Stop');
+  stopSoundButton.position(100, 25);
+  stopSoundButton.mousePressed(stopMusic);
   
 }
 function draw() {
-	if(playing && !wasDrawn){
-		drawMozart()
-		drawScore()
-		wasDrawn = true
+	if(playing){
+		if(!wasDrawn){
+			
+			
+		} 
+		
 	}
+}
+function drawMozartAndPlay(){
+	var elem = new p5.Element(createImg(backgroundPath,drawScore).elt)
+	elem.position(0,MESURE_HEIGHT)
+	elem.style('height:'+ window.height +'px;');
+	
+	elem.style('width:'+ window.width +'px;');
+	elem.style('width:'+ window.width +'px;');
+	elem.style('filter:opacity(10%);');
+	elem.style('filter:sepia(50%);');
+	elem.style('filter:contrast(200%);');
 }
 function drawMozart(){
 	var elem = new p5.Element(createImg(backgroundPath).elt)
+	elem.position(0,MESURE_HEIGHT)
+	elem.style('height:'+ window.height +'px;');
+	
+	elem.style('width:'+ window.width +'px;');
+	elem.style('width:'+ window.width +'px;');
+	elem.style('filter:opacity(10%);');
+	elem.style('filter:sepia(50%);');
+	elem.style('filter:contrast(200%);');
+	
+	
+	
+
+}
+function stopMusic(){
+	if(playing && curMesure != undefined){
+		playing = false
+		curMesure.stop()
+	}
 }
 function playMusic(){
+	stopMusic()
 	computeAllDices()
 	computeSoundArray()
 	
 	loadNeededSounds()
+
 	startPlaylist()
 }
 
 //onended function added to all sounds
 function playNext(){
 	if(curSound < 15 && playing){
-		playing = true
 		curMesure = playlist[curSound]
 		curMesure.play()
 		curMesure.onended(playNext)
+		drawMesure(curSound).style('filter:invert(100%);')
 		curSound +=1
 		console.log(playlist[curSound])
+		//change color or image
+		
+
 		
 	} else {
 		playing = false
@@ -103,35 +146,45 @@ function startPlaylist(){
 	wasDrawn = false
 	curSound = 0
 	playing = true
-	playNext()
+	drawMozartAndPlay()
+	
 }
-function getElement(index){
-	return new p5.Element(createImg(imagePath + index + imageFormat).elt)
+function getElement(index,i,firstDraw = false){
+	//add to elem array
+	var elem 
+	if(i == 0 && firstDraw){
+		elem = new p5.Element(createImg(imagePath + index + imageFormat, playNext).elt)
+	} else {
+		elem = new p5.Element(createImg(imagePath + index + imageFormat).elt)
+	}
+	
+	return elem
+}
+
+function drawMesure(i, firstDraw = false){
+	var index = getIndexOf(i)
+	var element = getElement(index,i,firstDraw)
+	var x = SCORE_X_START + Math.abs(i%8)*MESURE_WIDTH
+	var y = SCORE_Y_START + (i>=8 ? 2 : 0) * MESURE_HEIGHT
+	element.position(x,y)
+	return element
+	
 }
 function drawScore(){
-	var x = SCORE_X_START
-	var y = SCORE_Y_START
+	drawn = 0
 	//first part dice rolls
 
 	//first part mesures
 	for(var i = 0; i < 8; ++i){
-		var index = getIndexOf(i)
-		var element = getElement(index)
-		element.position(x,y)
-		x += MESURE_WIDTH
+		drawMesure(i,true)
 
 	}
 	//go down 
-	y+=(2*MESURE_HEIGHT)
-	x = SCORE_X_START
 	//second part dice rolls
 
 	//second part mesures
 	for(var i = 8; i < 16; ++i){
-		var index = getIndexOf(i)
-		var element = getElement(index)
-		element.position(x,y)
-		x += MESURE_WIDTH
+		drawMesure(i)
 	}
 }
 
