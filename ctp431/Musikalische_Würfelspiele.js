@@ -127,7 +127,7 @@ function playMusic(){
 
 //onended function added to all sounds
 function playNext(){
-	if(curSound < 15 && playing){
+	if(curSound < 16 && playing){
 		curMesure = playlist[curSound]
 		curMesure.play()
 		curMesure.onended(playNext)
