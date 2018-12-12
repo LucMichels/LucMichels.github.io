@@ -86,10 +86,10 @@ function draw() {
 function drawMozartAndPlay(){
 	var elem = new p5.Element(createImg(backgroundPath,drawScore).elt)
 	elem.position(0,MESURE_HEIGHT)
-	elem.style('height:'+ window.height +'px;');
+	elem.style('height:'+ window.innerHeight +'px;');
 	
-	elem.style('width:'+ window.width +'px;');
-	elem.style('width:'+ window.width +'px;');
+	elem.style('width:'+ window.innerWidth +'px;');
+
 	elem.style('filter:opacity(10%);');
 	elem.style('filter:sepia(50%);');
 	elem.style('filter:contrast(200%);');
@@ -97,10 +97,9 @@ function drawMozartAndPlay(){
 function drawMozart(){
 	var elem = new p5.Element(createImg(backgroundPath).elt)
 	elem.position(0,MESURE_HEIGHT)
-	elem.style('height:'+ window.height +'px;');
+	elem.style('height:'+ window.innerHeight +'px;');
 	
-	elem.style('width:'+ window.width +'px;');
-	elem.style('width:'+ window.width +'px;');
+	elem.style('width:'+ window.innerWidth +'px;');
 	elem.style('filter:opacity(10%);');
 	elem.style('filter:sepia(50%);');
 	elem.style('filter:contrast(200%);');
@@ -191,9 +190,9 @@ function drawScore(){
 function loadAllSounds(){
 	for(let i = 0; i<176; ++i){
 		//check if not already cached; if not: cache it
-		console.log(i + " loaded")
+		console.log(i + " loading")
 		if(loadedSongs[i] == undefined){
-			loadedSongs[i] = loadSound(path + "M" + (i+1) + fileType)
+			loadedSongs[i] = loadSound(path + "M" + (i+1) + fileType,x => console.log(i + " loaded"))
 		}
 	}
 }
