@@ -16,6 +16,7 @@ var playlist = []
 var loadedSongs = []
 var fileType = ".wav"
 var soundArray = []
+var playing = false
 var musicArray = [
 [96,32,69,40,148,104,152,119,98,3,54],
 [22,6,95,17,74,157,60,84,142,87,130],
@@ -37,6 +38,7 @@ var musicArray = [
 
 function preload(){
 	loadAllSounds()
+	loadAllImages()
 }
 function setup(){
 	createCanvas(400,400);  
@@ -47,7 +49,9 @@ function setup(){
   
 }
 function draw() {
-
+	if(playing){
+		//find all music playing
+	}
 }
 function playMusic(){
 	computeSoundArray()
@@ -58,11 +62,14 @@ function playMusic(){
 //onended function added to all sounds
 function playNext(){
 	if(curSound < 15){
+		playing = true
 		playlist[curSound].play()
 		playlist[curSound].onended(playNext)
 		curSound +=1
 		console.log(playlist[curSound])
 		
+	} else {
+		playing = false
 	}
 }
 
