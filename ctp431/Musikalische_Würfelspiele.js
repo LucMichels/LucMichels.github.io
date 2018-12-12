@@ -11,7 +11,7 @@ var playSoundButton, stopSoundButton;
 //score drawing
 var MESURE_WIDTH = 110
 var MESURE_HEIGHT = 120
-var DICE_PADDING = MESURE_WIDTH/2
+var DICE_PADDING = MESURE_WIDTH/3
 //init in setup where window dimentions are
 var SCORE_X_START
 var SCORE_Y_END
@@ -39,7 +39,7 @@ var musicArray = [
 [96,32,69,40,148,104,152,119,98,3,54],
 [22,6,95,17,74,157,60,84,142,87,130],
 [141,128,158,113,163,27,171,114,42,165,10],
-[41,63,13,85,4,167,53,50,156,61,103],
+[41,63,13,85,45,167,53,50,156,61,103],
 [105,146,153,161,80,154,99,140,75,135,28],
 [122,46,55,2,97,68,133,86,129,47,37],
 [11,134,110,159,36,118,21,169,62,147,106],
@@ -174,9 +174,21 @@ function drawMesure(i, firstDraw = false){
 
 	element.position(x,y)
 	//draw corresponding dice 
-	var xDice1 
+	var xDice1 = x 
+	var yDice1 = y - DICE_PADDING
+	var xDice2 = x + DICE_PADDING
+	var yDice2 = y - DICE_PADDING
+	drawDice(xDice1,yDice1,dices[2*i])
+	drawDice(xDice2,yDice2,dices[2*i+1])
+	
 	return element
 	
+}
+function drawDice(x,y,dice){
+	var elemD1 = new p5.Element(createImg("assets/dice/"+dice+".png").elt)
+	elemD1.position(x,y)
+	elemD1.style('height:'+ DICE_PADDING +'px;');
+	elemD1.style('width:'+ DICE_PADDING +'px;');
 }
 function drawWhite(){
 	var elem = new p5.Element(createImg("assets/background/white.png", drawScore).elt)
@@ -222,7 +234,7 @@ function loadNeededSounds(){
 
 		//find sound index
 		var index = getIndexOf(i)
-		
+		console.log(index)
 		playlist[i] = loadedSongs[index]
 		
 	}
