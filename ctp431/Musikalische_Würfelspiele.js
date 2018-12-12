@@ -7,7 +7,20 @@ var playerWav2
 
 var playSoundButton, loadAllSoundButton;
 
+
+//score drawing
+var MESURE_WIDTH = 110
+var MESURE_HEIGHT = 120
+//init in setup where window dimentions are
+var SCORE_X_START
+var SCORE_Y_END
+
 //playlist implementation
+
+
+var wasDrawn = false
+var imagePath = 'assets/scores/'
+var imageFormat = '.png'
 var curSound = 0
 var path = "assets/sounds/"
 var curSoundArray = []
@@ -17,6 +30,9 @@ var loadedSongs = []
 var fileType = ".wav"
 var soundArray = []
 var playing = false
+var curMesure
+var dices = []
+var backgroundPath = "assets/background/mozart.jpg"
 var musicArray = [
 [96,32,69,40,148,104,152,119,98,3,54],
 [22,6,95,17,74,157,60,84,142,87,130],
@@ -41,7 +57,10 @@ function preload(){
 	loadAllImages()
 }
 function setup(){
-	createCanvas(400,400);  
+	//init all constant variables
+	SCORE_X_START = window.innerWidth/6
+	SCORE_Y_START = window.innerHeight/4
+	createCanvas(window.innerWidth, window.innerHeight);  
 // play button
   playSoundButton = createButton('Play');
   playSoundButton.position(25, 25);
@@ -49,22 +68,30 @@ function setup(){
   
 }
 function draw() {
-	if(playing){
-		//find all music playing
+	if(playing && !wasDrawn){
+		drawMozart()
+		drawScore()
+		wasDrawn = true
 	}
 }
+function drawMozart(){
+	var elem = new p5.Element(createImg(backgroundPath).elt)
+}
 function playMusic(){
+	computeAllDices()
 	computeSoundArray()
+	
 	loadNeededSounds()
 	startPlaylist()
 }
 
 //onended function added to all sounds
 function playNext(){
-	if(curSound < 15){
+	if(curSound < 15 && playing){
 		playing = true
-		playlist[curSound].play()
-		playlist[curSound].onended(playNext)
+		curMesure = playlist[curSound]
+		curMesure.play()
+		curMesure.onended(playNext)
 		curSound +=1
 		console.log(playlist[curSound])
 		
@@ -72,10 +99,40 @@ function playNext(){
 		playing = false
 	}
 }
-
 function startPlaylist(){
+	wasDrawn = false
 	curSound = 0
+	playing = true
 	playNext()
+}
+function getElement(index){
+	return new p5.Element(createImg(imagePath + index + imageFormat).elt)
+}
+function drawScore(){
+	var x = SCORE_X_START
+	var y = SCORE_Y_START
+	//first part dice rolls
+
+	//first part mesures
+	for(var i = 0; i < 8; ++i){
+		var index = getIndexOf(i)
+		var element = getElement(index)
+		element.position(x,y)
+		x += MESURE_WIDTH
+
+	}
+	//go down 
+	y+=(2*MESURE_HEIGHT)
+	x = SCORE_X_START
+	//second part dice rolls
+
+	//second part mesures
+	for(var i = 8; i < 16; ++i){
+		var index = getIndexOf(i)
+		var element = getElement(index)
+		element.position(x,y)
+		x += MESURE_WIDTH
+	}
 }
 
 function loadAllSounds(){
@@ -87,20 +144,19 @@ function loadAllSounds(){
 		}
 	}
 }
+
+function getIndexOf(i){
+	return musicArray[i][curSoundArray[i]] - 1
+}
 function loadNeededSounds(){
 	playlist = []
 	for(var i = 0; i < curSoundArray.length; ++i){
 
 		//find sound index
-		var index = musicArray[i][curSoundArray[i]] - 1
-		console.log(index + " index")
-		//check if sound was cached
-		if(loadedSongs[index] != undefined){
-			playlist[i] = loadedSongs[index]
-		} else {//not cached need to load the sound and cache it
-			loadedSongs[index] = loadSound(path + "M" + (index+1) + fileType)
-			playlist[i] = loadedSongs[index]
-		}
+		var index = getIndexOf(i)
+		
+		playlist[i] = loadedSongs[index]
+		
 	}
 }
 
@@ -110,7 +166,7 @@ function getIndexFromDices(dice1,dice2){
 
 function computeAllDices(){//will be replaced by virtual dices later on
 
-	var dices = []
+	dices = []
 	for(var i = 0; i < 32; ++i){
 		dices.push(getRandomDice())
 	}
@@ -123,10 +179,8 @@ function getRandomDice() {
 }
 
 function computeSoundArray(){
-	//stop music if needed
-	stop = true
 	curSoundArray = [] //reinit sound array
-	var dices = computeAllDices()
+	
 	for(var i = 0; i < 32; i+=2){
 
 		var dice1 = dices[i]
@@ -134,7 +188,7 @@ function computeSoundArray(){
 
 		curSoundArray.push(getIndexFromDices(dice1,dice2))
 	}
-	stop = false
+
 }
 
 
