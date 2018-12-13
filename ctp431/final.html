@@ -1,17 +1,50 @@
 <html>
     <head>
-
-         <script src="p5.min.js"></script>
-        <script src="p5.sound.min.js"></script>
-         <script src="p5.dom.min.js"></script>
-        <script src="Musikalische_Würfelspiele.js"></script>
-
-
        
-        </button>
 
     </head>
     <body>
-    <h4>"Musikalische Würfelspiele"</h4>
+    <h1>Musikalische Würfelspiele</h1>
+    <h4>Introduction:
+</h4>
+        <p>
+Procedural music composition is an extremely fascinating subject. Inspiration is important for musicians and a way to make new compositions or trigger these flashes of inspiration is valuable. As such, procedural music composition plays an important role in music.
+In this project, I will tackle the Mozart Dice Game or “Musikalische Würfelspiele” which uses music construction and randomness to craft an enormous amount of music pieces.
+
+    </p>
+    <h4>Main idea:
+</h4>
+        <p>
+The main idea of the project is to create dynamically generated music scores following the rules that have been implemented by Mozart for his Dice Game. As such, the user will be able to roll 32 different pair of dices and compose a music piece in real time. This score will be displayed to the user. Each piece that composes the music score will have its dice roll which was responsible for choosing it above the mesure. After having rolled the dices the user with also hear the music play at the same time. Thereafter, the user will also be able to follow the music in real time because each part of the score will be highlighted while played. 
+It also possible to stop the music at any time or chose to start another random composition.
+
+    </p>
+    <h4>Technical details:
+</h4>
+        <p>
+To create the project the library used was p5. To use sound and create the dynamically generated playlist p5.sound was utilized for its ability to add an onended function when playing a sound from a music file. This feature was not available in Tone.js which is the primary reason p5.sound was used instead. To draw the score images and modify the images on run time, so the mesure being played is clearly shown to the user of the website, p5.dom was used. 
+There were a lot of unanticipated problems during the conception of the project.
+The main cause of the problems stems from finding the resources to create the musical pieces. Indeed, we need both each individual wav file for each music mesure but also we need its corresponding music sheet representation. One unanticipated problem is that using midi turned out to be more complicated previously thought. In the mid project presentation, I made the decision to use wav file instead of midi files which made me use p5. To create the music sheet representation of the mesures I individually cropped all scores from an already available music score of all pieces. However, the music sounds revealed to be slightly different from the music scores and I only realized it at the very end when it was pointed out by Eric (I do not have any musical background so I thought it was strange but normal)
+I found a Midi file with all pieces of music that really corresponded to the music score but I needed to cut the Midi file into 176 measures as well convert them individually to wav format.
+
+    </p>
+    <h4>References:</h4>
+    <p>
+Here are some case study I took inspiration from:
+http://www.ccarh.org/courses/253/lab/kerndice/
+http://www.dein-name-ist-musik.de/
+http://sunsite.univie.ac.at/Mozart/dice/
+http://www.nowa.lu/index.php?language=de&page=87
+https://scratch.mit.edu/projects/1516316/
+Here is are links to resources used to complete the project:
+Drawing: https://p5js.org/
+Dom: https://p5js.org/reference/#/libraries/p5.dom
+Playlist: https://p5js.org/reference/#/libraries/p5.sound
+Score: https://musescore.com/user/56747/scores/1742031
+Wav files: http://www.cs.cornell.edu/courses/cs100j/2007sp/assignments/a6/a6.html
+Dices: https://commons.wikimedia.org/wiki/Category:Dice_faces
+Here is the link to the video presenting a demo of the webpage:
+
+    </p>
     </body>
 </html>
