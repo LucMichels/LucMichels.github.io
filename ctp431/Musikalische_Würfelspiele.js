@@ -60,9 +60,9 @@ function preload(){
 function setup(){
 
 	//init all constant variables
-	SCORE_X_START = 2*(window.width)/5
-	SCORE_Y_START = window.height/4
-	createCanvas(window.innerWidth, window.height);  
+	SCORE_X_START = 2*(window.innerWidth)/5
+	SCORE_Y_START = window.innerHeight/4
+	createCanvas(window.innerWidth, window.innerHeight);  
 	drawMozart()
 // play button
   playSoundButton = createButton('Play');
