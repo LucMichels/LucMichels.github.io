@@ -60,7 +60,7 @@ function preload(){
 function setup(){
 
 	//init all constant variables
-	SCORE_X_START = window.innerWidth/3
+	SCORE_X_START = 2*(window.innerWidth)/5
 	SCORE_Y_START = window.innerHeight/4
 	createCanvas(window.innerWidth, window.innerHeight);  
 	drawMozart()
@@ -129,6 +129,7 @@ function playMusic(){
 function playNext(){
 	if(curSound < 16 && playing){
 		curMesure = playlist[curSound]
+		console.log(curMesure)
 		curMesure.play()
 		curMesure.onended(playNext)
 		if(curSound>0){
@@ -137,7 +138,6 @@ function playNext(){
 		
 		drawMesure(curSound).style('filter:invert(100%);')
 		curSound +=1
-		console.log(playlist[curSound])
 		//change color or image
 		
 
@@ -192,9 +192,9 @@ function drawDice(x,y,dice){
 }
 function drawWhite(){
 	var elem = new p5.Element(createImg("assets/background/white.png", drawScore).elt)
-	elem.position(SCORE_X_START,SCORE_Y_START-MESURE_HEIGHT)
-	elem.style('height:'+ (5*MESURE_HEIGHT) +'px;');
-	elem.style('width:'+ (8*MESURE_WIDTH) +'px;');
+	elem.position(SCORE_X_START - DICE_PADDING,SCORE_Y_START-MESURE_HEIGHT)
+	elem.style('height:'+ Math.round(4.5*MESURE_HEIGHT) +'px;');
+	elem.style('width:'+ (8*MESURE_WIDTH + DICE_PADDING) +'px;');
 }
 function drawScore(){
 	
@@ -255,7 +255,7 @@ function computeAllDices(){//will be replaced by virtual dices later on
 
 function getRandomDice() {
   
-  return Math.floor(Math.random() * 5 + 1);
+  return Math.floor(Math.random() * 6 )+ 1;
 }
 
 function computeSoundArray(){
