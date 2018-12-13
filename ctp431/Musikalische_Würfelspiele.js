@@ -9,7 +9,7 @@ var playSoundButton, stopSoundButton;
 
 
 //score drawing
-var MESURE_WIDTH = 110
+var MESURE_WIDTH = 100
 var MESURE_HEIGHT = 120
 var DICE_PADDING = MESURE_WIDTH/3
 //init in setup where window dimentions are
@@ -62,7 +62,7 @@ function setup(){
 	//init all constant variables
 	SCORE_X_START = 2*(window.width)/5
 	SCORE_Y_START = window.height/4
-	createCanvas(window.width, window.height);  
+	createCanvas(window.innerWidth, window.height);  
 	drawMozart()
 // play button
   playSoundButton = createButton('Play');
