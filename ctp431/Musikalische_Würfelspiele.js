@@ -5,7 +5,7 @@ var player
 var playerWav
 var playerWav2
 
-var playSoundButton, stopSoundButton;
+var playSoundButton, stopSoundButton, loopSoundButton;
 
 
 //score drawing
@@ -17,7 +17,7 @@ var SCORE_X_START
 var SCORE_Y_END
 
 //playlist implementation
-
+var looping = false
 var drawn = 0
 var wasDrawn = false
 var imagePath = 'assets/scores/'
@@ -56,10 +56,12 @@ var musicArray = [
 
 function preload(){
 	loadAllSounds()
+	looping = false
 }
 function setup(){
 
 	//init all constant variables
+	looping = false
 	SCORE_X_START = 2*(window.innerWidth)/5
 	SCORE_Y_START = window.innerHeight/4
 	createCanvas(window.innerWidth, window.innerHeight);  
@@ -69,11 +71,29 @@ function setup(){
   playSoundButton.position(25, 25);
   playSoundButton.mousePressed(playMusic);
 
-  // play button
+  // stop button
   stopSoundButton = createButton('Stop');
   stopSoundButton.position(100, 25);
   stopSoundButton.mousePressed(stopMusic);
+
+  // loop button
+  loopSoundButton = createButton('Loop');
+  loopSoundButton.position(175, 25);
+  loopSoundButton.mousePressed(tryLoop);
   
+}
+
+function tryLoop(){
+	console.log("ho")
+	console.log(looping)
+	if(!looping){
+		console.log("hi")
+		loopSoundButton.html('StopLoop')
+		looping = true
+	} else {
+		loopSoundButton.html('Loop')
+		looping = false
+	}
 }
 function draw() {
 	if(playing){
@@ -145,6 +165,9 @@ function playNext(){
 	} else if (curSound == 16){
 		playing = false
 		drawMesure(curSound-1).style('filter:none;')
+		if(looping){
+			playMusic()
+		}
 	}
 }
 function startPlaylist(){
