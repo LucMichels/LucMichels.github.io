@@ -84,10 +84,8 @@ function setup(){
 }
 
 function tryLoop(){
-	console.log("ho")
-	console.log(looping)
+
 	if(!looping){
-		console.log("hi")
 		loopSoundButton.html('StopLoop')
 		looping = true
 	} else {
