@@ -94,13 +94,8 @@ function tryLoop(){
 	}
 }
 function draw() {
-	if(playing){
-		if(!wasDrawn){
-			
-			
-		} 
-		
-	}
+	SCORE_X_START = 2*(window.innerWidth)/5
+	SCORE_Y_START = window.innerHeight/4
 }
 function drawMozartAndPlay(){
 	var elem = new p5.Element(createImg(backgroundPath,drawWhite).elt)
