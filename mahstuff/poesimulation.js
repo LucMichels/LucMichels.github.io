@@ -58,20 +58,35 @@ function showResults() {
 		console.log(loggedResults[i*10-1])
 	}
 	//show average
-	console.log("Average cast speed \n")
+	
 
 	var speed = 0
 	for (var i = 0; i < loggedCastSpeed.length; ++i){
 		speed += loggedCastSpeed[i]
 	}
 	var avg = (speed/loggedCastSpeed.length)
-	console.log("average cast speed is " + avg)
+	console.log("Average cast speed is " + avg)
 	//show max
 	var max = Math.max.apply(null, loggedCastSpeed)
    	console.log( "Max cast speed is "+ max )
 
    	console.log("This means than on average unearth cast speed has been multiplied by " + (avg/BASE_CAST_SPEED) + "\n with a maximum multplier of " +max)
 
+   	//see consume procs per second
+   	var totProc = 0
+   	var len = loggedCorpsesExplodedInTime.length
+	for(var i = 0; i < len; ++i){
+		var tupple = loggedCorpsesExplodedInTime[i]
+		var time = tupple.time
+		var corpses = tupple.corpses
+
+		if(corpses > 0){
+			totProc ++
+
+		}
+		
+	}
+	console.log("Procs per seconds is " + (totProc/loggedCorpsesExplodedInTime[len-1].time) + " on average")
 }
 function restartSimulation(){
 	loggedCorpsesExplodedInTime = []
