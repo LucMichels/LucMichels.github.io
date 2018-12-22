@@ -57,7 +57,15 @@ function showResults() {
 	//show average
 	console.log("Average cast speed \n")
 
+	var speed = 0
+	for (var i = 0; i < loggedCastSpeed.length; ++i){
+		speed += loggedCastSpeed[i]
+	}
+	console.log("average cast speed is " +(speed/loggedCastSpeed.length))
 	//show max
+
+   	console.log( "Max cast speed is "+ Math.max.apply(null, loggedCastSpeed) )
+
 
 }
 function restartSimulation(){
