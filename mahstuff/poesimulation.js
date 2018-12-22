@@ -2,12 +2,13 @@ var loggedCorpsesExplodedInTime = []
 var loggedCastSpeed = []
 var loggedResults = []
 var BASE_CAST_SPEED = 1.66666666666666//in cast per second
-var BASE_ADDED_CAST_SPEED = 0.15
+var BASE_ADDED_CAST_SPEED = 0.95
 var simulating = true
+var maxAttacks = 100
 
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
-	if(simulating && attacks < 100){
+	if(simulating && attacks < maxAttacks){
 		//log entry of last cast
 		var newCorpses = 0
 		var log = new TimeCorpses(time,corpses)
@@ -30,6 +31,8 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		loggedCastSpeed.push(newCastSpeed)
 		//reiterate
 		simulate(newCastSpeed, newTime, newCorpses, attacks+1)
+	} else if (maxAttacks >= 100){
+		showResults()
 	}
 	
 	
@@ -77,7 +80,7 @@ function restartSimulation(){
 }
 
 function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
-	var castSpeedAddedByCorpses = BASE_ADDED_CAST_SPEED 
+	var castSpeedAddedByCorpses = Number(document.getElementById("myText").value )
 	var len = loggedCorpsesExplodedInTime.length
 	for(var i = 0; i < len; ++i){
 		var tupple = loggedCorpsesExplodedInTime[i]
