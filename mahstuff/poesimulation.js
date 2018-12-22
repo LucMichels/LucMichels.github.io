@@ -7,7 +7,7 @@ var simulating = true
 
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
-	if(simulating){
+	if(simulating && attacks < 100){
 		//log entry of last cast
 		var newCorpses = 0
 		var log = new TimeCorpses(time,corpses)
@@ -22,7 +22,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		var newTime = findTimeElapsed(newCastSpeed) + time
 		
 		//print values
-		var result = "Current cast speed is " + newCastSpeed + " at " + newTime + " seconds after " + attacks + " attacks"
+		var result = "Current cast speed is " + newCastSpeed + " at " + newTime + " seconds after " + (attacks+1) + " attacks"
 		console.log(result)
 		//log results 
 		loggedResults.push(result)
