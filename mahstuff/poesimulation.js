@@ -69,7 +69,7 @@ function restartSimulation(){
 }
 
 function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
-	var castSpeedAddedByCorpses = BASE_ADDED_CAST_SPEED + corpses*0.02
+	var castSpeedAddedByCorpses = BASE_ADDED_CAST_SPEED 
 	var len = loggedCorpsesExplodedInTime.length
 	for(var i = 0; i < len; ++i){
 		var tupple = loggedCorpsesExplodedInTime[i]
