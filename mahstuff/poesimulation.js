@@ -14,10 +14,11 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		loggedCorpsesExplodedInTime.push(log)
 
 		//find new variables
-		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, corpses)
+		
 		if(Math.random() < 0.3){	
 			newCorpses = 9
 		} 
+		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, corpses)
 		 
 		var newTime = findTimeElapsed(newCastSpeed) + time
 		
