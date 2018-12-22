@@ -44,7 +44,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 function showResults() {
 	simulating = false
 	//padding
-	console.log("Simulation stopped.\nShowing Results with " + document.getElementById("myText").value\n + " base cast speed")
+	console.log("Simulation stopped.\nShowing Results with " + document.getElementById("myText").value + " base cast speed\n")
 
 	//show first 10 attacks
 	console.log("First 10 attacks: \n")
