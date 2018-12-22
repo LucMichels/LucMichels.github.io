@@ -70,7 +70,7 @@ function showResults() {
 	var max = Math.max.apply(null, loggedCastSpeed)
    	console.log( "Max cast speed is "+ max )
 
-   	console.log("This means than on average unearth cast speed has been multiplied by " + (avg/BASE_CAST_SPEED)) + "\n with a maximum multplier of " +max
+   	console.log("This means than on average unearth cast speed has been multiplied by " + (avg/BASE_CAST_SPEED) + "\n with a maximum multplier of " +max)
 
 }
 function restartSimulation(){
