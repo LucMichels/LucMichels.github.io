@@ -45,13 +45,13 @@ function showResults() {
 	//show first 10 attacks
 	console.log("First 10 attacks: \n")
 	for(var i = 0; i < 10; ++i){
-
+		console.log(loggedResults[i])
 	}
 
 	//show next 5 attacks with 10 attacks in between
 	console.log("Next 5 attacks with 10 attacks in between each: \n")
 	for(var i = 2; i < 7; ++i){
-		
+		console.log(loggedResults[i*10-1])
 	}
 	//show average
 	console.log("Average cast speed \n")
