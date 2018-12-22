@@ -82,6 +82,7 @@ function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
 		}
 		
 	}
+	console.log("added attack speed is "+ corpses*0.02 + " with "+corpses + " corpses")
 
 	return BASE_CAST_SPEED * (1 + castSpeedAddedByCorpses)
 }
