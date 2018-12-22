@@ -2,7 +2,7 @@ var loggedCorpsesExplodedInTime = []
 var loggedCastSpeed = []
 var loggedResults = []
 var BASE_CAST_SPEED = 1.66666666666666//in cast per second
-var BASE_ADDED_CAST_SPEED = 0.6
+var BASE_ADDED_CAST_SPEED = 0.15
 var simulating = true
 
 
