@@ -4,7 +4,7 @@ var loggedResults = []
 var BASE_CAST_SPEED = 3//in cast per second
 var BASE_ADDED_CAST_SPEED = 0.95
 var simulating = true
-var maxAttacks = 1000
+var maxAttacks = 200
 
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
