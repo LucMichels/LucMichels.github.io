@@ -1,10 +1,10 @@
 var loggedCorpsesExplodedInTime = []
 var loggedCastSpeed = []
 var loggedResults = []
-var BASE_CAST_SPEED = 1.66666666666666//in cast per second
+var BASE_CAST_SPEED = 3//in cast per second
 var BASE_ADDED_CAST_SPEED = 0.95
 var simulating = true
-var maxAttacks = 100
+var maxAttacks = 1000
 
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
@@ -31,7 +31,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		loggedCastSpeed.push(newCastSpeed)
 		//reiterate
 		simulate(newCastSpeed, newTime, newCorpses, attacks+1)
-	} else if (maxAttacks >= 100){
+	} else if (attacks >= maxAttacks){
 		showResults()
 	}
 	
