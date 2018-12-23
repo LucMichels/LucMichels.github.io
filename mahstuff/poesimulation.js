@@ -16,7 +16,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 
 		//find new variables
 		
-		if(Math.random() < 0.3){	
+		if(Math.random() <= 0.3){	
 			newCorpses = 7
 		} 
 		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, corpses)
@@ -53,8 +53,8 @@ function showResults() {
 	}
 
 	//show next 5 attacks with 10 attacks in between
-	console.log("Next 5 attacks with 10 attacks in between each: \n")
-	for(var i = 2; i < 7; ++i){
+	console.log("Next 15 attacks with 10 attacks in between each: \n")
+	for(var i = 2; i < 17; ++i){
 		console.log(loggedResults[i*10-1])
 	}
 	//show average
