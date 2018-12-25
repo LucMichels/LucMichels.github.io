@@ -5,7 +5,10 @@ var simulating = true
 var maxAttacks = 200
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
-	if(simulating && attacks < maxAttacks){
+
+	if(attacks == -1){
+		simulate(Number(document.getElementById("myBaseAS").value ),0 ,0 , 0)
+	} else if(simulating && attacks < maxAttacks){
 		//log entry of last cast
 		var newCorpses = 0
 		var log = new TimeCorpses(time,corpses)
