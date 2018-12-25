@@ -5,7 +5,7 @@ var BASE_CAST_SPEED = 3//in cast per second
 var BASE_ADDED_CAST_SPEED = 0.15
 var simulating = true
 var maxAttacks = 200
-
+//please update
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
 	if(simulating && attacks < maxAttacks){
