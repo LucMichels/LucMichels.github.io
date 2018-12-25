@@ -93,7 +93,7 @@ function restartSimulation(){
 	loggedCastSpeed = []
 	loggedResults = []
 	simulating = true
-	simulate(BASE_CAST_SPEED,0 , 0, 0)
+	simulate(Number(document.getElementById("myBaseAS").value ),0 , 0, 0)
 }
 
 function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
@@ -112,7 +112,7 @@ function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
 	}
 	console.log("added attack speed is "+ corpses*0.02 + " with "+corpses + " corpses")
 
-	return BASE_CAST_SPEED * (1 + castSpeedAddedByCorpses)
+	return Number(document.getElementById("myBaseAS").value ) * (1 + castSpeedAddedByCorpses)
 }
 
 function findTimeElapsed(lastCastSpeed) {
