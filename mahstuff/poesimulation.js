@@ -19,7 +19,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		if(Math.random() <= 0.3){	
 			newCorpses = Number(document.getElementById("myCorpsePerConsume").value )
 		} 
-		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, corpses)
+		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, newCorpses)
 		 
 		var newTime = findTimeElapsed(newCastSpeed) + time
 		
@@ -110,7 +110,7 @@ function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
 		}
 		
 	}
-	console.log("added attack speed is "+ corpses*0.02 + " with "+corpses + " corpses")
+	console.log("added attack speed is "+ corpses*0.02 + " with "+document.getElementById("myCorpsePerConsume").value + " corpses")
 
 	return Number(document.getElementById("myBaseAS").value ) * (1 + castSpeedAddedByCorpses)
 }
