@@ -1,11 +1,8 @@
 var loggedCorpsesExplodedInTime = []
 var loggedCastSpeed = []
 var loggedResults = []
-var BASE_CAST_SPEED = 3//in cast per second
-var BASE_ADDED_CAST_SPEED = 0.15
 var simulating = true
 var maxAttacks = 200
-//please update
 
 function simulate(lastCastSpeed,time,corpses, attacks) {
 	if(simulating && attacks < maxAttacks){
@@ -111,7 +108,7 @@ function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
 		
 	}
 	console.log("added attack speed is "+ corpses*0.02 + " with "+document.getElementById("myCorpsePerConsume").value + " corpses")
-
+	console.log("we have consumed " + corpses + " corpses")
 	return Number(document.getElementById("myBaseAS").value ) * (1 + castSpeedAddedByCorpses)
 }
 
