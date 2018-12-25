@@ -104,7 +104,7 @@ function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
 		var time = tupple.time
 		var corpses = tupple.corpses
 
-		if(time >= curTime - 4){
+		if(time >= curTime - 4 && curTime - time < 0.1){
 			console.log(" time: " + time +", corpses: " + corpses)//helllo
 			castSpeedAddedByCorpses += corpses*0.02
 		}
