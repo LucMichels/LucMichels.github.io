@@ -44,7 +44,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 function showResults() {
 	simulating = false
 	//padding
-	console.log("Simulation stopped.\nShowing Results with " + document.getElementById("myText").value + " base cast speed\n" + "The base cast speed of unearth is " + BASE_CAST_SPEED +" casts per second")
+	console.log("Simulation stopped.\nShowing Results with " + document.getElementById("myText").value + " base cast speed\n" + "The base attack/cast speed of your attack/spell is " + (Number(document.getElementById("myBaseAS").value ) * (1+Number(document.getElementById("myText").value ))) +" attacks/casts per second")
 
 	//show first 10 attacks
 	console.log("First 10 attacks: \n")
@@ -70,7 +70,7 @@ function showResults() {
 	var max = Math.max.apply(null, loggedCastSpeed)
    	console.log( "Max cast speed is "+ max )
 
-   	console.log("This means than on average unearth cast speed has been multiplied by " + (avg/BASE_CAST_SPEED) + "\n with a maximum multplier of " +(max/BASE_CAST_SPEED))
+   	console.log("This means than on average unearth cast speed has been multiplied by " + (avg/Number(document.getElementById("myBaseAS").value )) + "\n with a maximum multplier of " +(max/Number(document.getElementById("myBaseAS").value )))
 
    	//see consume procs per second
    	var totProc = 0
