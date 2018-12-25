@@ -17,7 +17,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		//find new variables
 		
 		if(Math.random() <= 0.3){	
-			newCorpses = 7
+			newCorpses = Number(document.getElementById("myCorpsePerConsume").value )
 		} 
 		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, corpses)
 		 
