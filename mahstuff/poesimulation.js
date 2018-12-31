@@ -4,24 +4,30 @@ var loggedResults = []
 var simulating = true
 var maxAttacks = 200
 var totCorpses = 0
+var totProc = 0
 var baseAS
 var addedAS
 var corpsesPerProc
 var maxAttacks
 var simulationDuration
 var hasMultistrike
+var multistrikeLevelMultiplier
 
 function initConstants(){
 	baseAS = Number(document.getElementById("myBaseAS").value )
 	addedAS = Number(document.getElementById("addedAS").value)
 	corpsesPerProc = Number(document.getElementById("myCorpsePerConsume").value )
-	maxAttacks =  Number(document.getElementById("maxAttacks").valuedocument.getElementById("maxAttacks").value)
-	simulationDuration =  Number(document.getElementById("simulationDuration").valuedocument.getElementById("maxAttacks").value)
+	maxAttacks =  Number(document.getElementById("maxAttacks").value)
+	simulationDuration =  Number(document.getElementById("simulationDuration").value)
 	hasMultistrike = document.getElementById("multistrike").checked
+	multistrikeLevelMultiplier = Number(document.getElementById("multistrikeMultiplier").value)
+	if(hasMultistrike){
+		baseAS *= multistrikeLevelMultiplier
+	}
 }
 function simulate(lastCastSpeed,time,corpses, attacks) {
 
-	if(simulating && (attacks < maxAttacks || simulationDuration >= time )){
+	if(simulating && attacks < maxAttacks && simulationDuration > time ){
 		//log entry of last cast
 		var newCorpses = 0
 		var log = new TimeCorpses(time,corpses)
@@ -31,6 +37,8 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		
 		if(Math.random() <= 0.3){	
 			newCorpses = corpsesPerProc
+			totCorpses += newCorpses
+			totProc+=1
 		} 
 		var newCastSpeed = findNextCastSpeed(lastCastSpeed, time, newCorpses)
 		 
@@ -45,13 +53,13 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 		//reiterate
 
 		if(hasMultistrike){
-			simulate(newCastSpeed, newTime+2*newCastSpeed, newCorpses, attacks+3)
+			simulate(newCastSpeed, newTime+2*findTimeElapsed(newCastSpeed), newCorpses, attacks+3)
 		} else {
 			simulate(newCastSpeed, newTime, newCorpses, attacks+1)
 		}
 		
-	} else if (attacks >= maxAttacks){
-		showResults()
+	} else {
+		showResults(lastCastSpeed,time,corpses, attacks)
 	}
 	
 	
@@ -60,7 +68,7 @@ function simulate(lastCastSpeed,time,corpses, attacks) {
 
 }
 
-function showResults() {
+function showResults(lastCastSpeed,time,corpses, attacks) {
 	simulating = false
 	//padding
 	console.log("Simulation stopped.\nShowing Results with " + addedAS + " base added cast/attack speed\nThe base attack/cast speed of your attack/spell is " + (baseAS * (1+addedAS )) +" attacks/casts per second")
@@ -89,51 +97,47 @@ function showResults() {
 	var max = Math.max.apply(null, loggedCastSpeed)
    	console.log( "Max cast speed is "+ max )
 
+   	
    	console.log("This means than on average your attack/cast speed has been multiplied by " + (avg/baseAS) + "\n with a maximum multplier of " +(max/baseAS ))
-
    	//see consume procs per second
-   	var totProc = 0
    	var len = loggedCorpsesExplodedInTime.length
-	for(var i = 0; i < len; ++i){
-		var tupple = loggedCorpsesExplodedInTime[i]
-		var time = tupple.time
-		var corpses = tupple.corpses
-
-		if(corpses > 0){
-			totProc ++
-			totCorpses += corpses
-		}
-		
-	}
-	console.log("Procs per seconds is " + (totProc/loggedCorpsesExplodedInTime[len-1].time) + " on average")
+	
+	console.log("We have a total of " + totProc + " procs for a total of " +totCorpses+ " corpses consumed")
+	console.log("Procs per seconds is " + (totProc/time) + " on average")
 }
 function restartSimulation(){
 	initConstants()
-	console.log(document.getElementById("multistrike").checked)
-	console.log(document.getElementById("multistrike").value)
 	loggedCorpsesExplodedInTime = []
 	loggedCastSpeed = []
 	loggedResults = []
 	simulating = true
+	totProc = 0
+	totCorpses = 0
 	simulate(baseAS,0 , 0, 0)
 }
 
 function findNextCastSpeed(lastCastSpeed, curTime, corpses) {
-	var castSpeedAddedByCorpses = addedAS
+	
 	var len = loggedCorpsesExplodedInTime.length
+	var corpseConsumed = 0
 	for(var i = 0; i < len; ++i){
 		var tupple = loggedCorpsesExplodedInTime[i]
 		var time = tupple.time
-		var corpses = tupple.corpses
+		var corpsesCons = tupple.corpses
 
 		if(time >= curTime - 4 && curTime - time > 0.1){
-			console.log(" time: " + time +", corpses: " + corpses)//helllo
-			castSpeedAddedByCorpses += corpses*0.02
+			console.log(" time: " + time +", corpses: " + corpsesCons)//helllo
+			corpseConsumed += corpsesCons
+
 		}
 		
 	}
-	console.log("Added attack speed is "+ (castSpeedAddedByCorpses-addedAS) )
-	console.log("We have consumed " + Math.round(((castSpeedAddedByCorpses-addedAS)/0.2)*corpsesPerProc + " corpses")
+	var corpseAddedAttackSpeed = corpseConsumed*0.02
+	var castSpeedAddedByCorpses = addedAS + corpseAddedAttackSpeed
+	
+	console.log("Added attack speed from corpses is "+ corpseAddedAttackSpeed )
+	console.log("From the total attack/cast speed " + ( corpseAddedAttackSpeed*100/(corpseAddedAttackSpeed+addedAS)) + "% was added from corpses")
+	console.log("We have consumed " + corpseConsumed + " corpses")
 	return baseAS * (1 + castSpeedAddedByCorpses)
 }
 
